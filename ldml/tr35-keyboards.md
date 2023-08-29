@@ -1614,6 +1614,8 @@ There are other keying behaviors that are needed particularly in handing complex
 
 Markers are placeholders which record some state, but without producing normal visible text output.  They were designed particularly to support dead-keys.
 
+The marker ID is any valid `NMTOKEN` (But see [CLDR-17043](https://unicode-org.atlassian.net/browse/CLDR-17043) for future discussion.)
+
 Consider the following abbreviated example:
 
 ```xml
@@ -2009,7 +2011,7 @@ The reordering algorithm consists of four parts:
    * `run := preBase* (primary=0 && tertiary=0) ((primary≠0 || tertiary≠0) && !preBase)*`
 4. Sort the character order of each character in the run based on its sort key.
 
-The primary order of a character with the Unicode property Combining_Character_Class (ccc) of 0 may well not be 0. In addition, a character may receive a different primary order dependent on context. For example, in the Devanagari sequence ka halant ka, the first ka would have a primary order 0 while the halant ka sequence would give both halant and the second ka a primary order > 0, for example 2. Note that “base” character in this discussion is not a Unicode base character. It is instead a character with primary=0.
+The primary order of a character with the Unicode property `Canonical_Combining_Class` (ccc) of 0 may well not be 0. In addition, a character may receive a different primary order dependent on context. For example, in the Devanagari sequence ka halant ka, the first ka would have a primary order 0 while the halant ka sequence would give both halant and the second ka a primary order > 0, for example 2. Note that “base” character in this discussion is not a Unicode base character. It is instead a character with primary=0.
 
 In order to get the characters into the correct relative order, it is necessary not only to order combining marks relative to the base character, but also to order some combining marks in a subsequence following another combining mark. For example in Devanagari, a nukta may follow a consonant character, but it may also follow a conjunct consisting of consonant, halant, consonant. Notice that the second consonant is not, in this model, the start of a new run because some characters may need to be reordered to before the first base, for example repha. The repha would get primary < 0, and be sorted before the character with order = 0, which is, in the case of Devanagari, the initial consonant of the orthographic syllable.
 
@@ -2350,8 +2352,8 @@ It is important that implementations do not by default delete more than one non-
 
     <!-- Final implicit backspace transform: Delete the final codepoint. -->
     <transformGroup>
-        <!-- (:?\m{*})*  - matches any number of contiguous markers -->
-        <transform from="(:?\m{*})*.(:?\m{*})*" /> <!-- deletes any number of markers directly on either side of the final pre-caret codepoint -->
+        <!-- (:?\m{.})*  - matches any number of contiguous markers -->
+        <transform from="(:?\m{.})*.(:?\m{.})*" /> <!-- deletes any number of markers directly on either side of the final pre-caret codepoint -->
     </transformGroup>
 </transforms>
 ```
