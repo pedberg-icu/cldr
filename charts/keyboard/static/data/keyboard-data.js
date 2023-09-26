@@ -6,7 +6,7 @@ const _KeyboardData =
     "@_version": "1.0",
     "@_encoding": "UTF-8"
    },
-   "keyboard": {
+   "keyboard3": {
     "locales": {
      "locale": {
       "@_id": "en"
@@ -212,7 +212,7 @@ const _KeyboardData =
     "@_version": "1.0",
     "@_encoding": "UTF-8"
    },
-   "keyboard": {
+   "keyboard3": {
     "locales": {
      "locale": {
       "@_id": "pt"
@@ -386,7 +386,7 @@ const _KeyboardData =
     "@_version": "1.0",
     "@_encoding": "UTF-8"
    },
-   "keyboard": {
+   "keyboard3": {
     "locales": {
      "locale": {
       "@_id": "en"
@@ -597,7 +597,7 @@ const _KeyboardData =
     "@_version": "1.0",
     "@_encoding": "UTF-8"
    },
-   "keyboard": {
+   "keyboard3": {
     "locales": {
      "locale": {
       "@_id": "br"
@@ -683,7 +683,7 @@ const _KeyboardData =
     },
     "displays": {
      "display": {
-      "@_to": "\\u0300",
+      "@_to": "\\u{0300}",
       "@_display": "${grave}"
      },
      "displayOptions": {
@@ -777,15 +777,15 @@ const _KeyboardData =
        "flick": [
         {
          "@_directions": "nw",
-         "@_to": "\\u1234"
+         "@_to": "\\u{1234}"
         },
         {
          "@_directions": "nw se",
-         "@_to": "\\uFFFF"
+         "@_to": "\\u{FFFF}"
         },
         {
          "@_directions": "e",
-         "@_to": "\\uFFF0"
+         "@_to": "\\u{FFF0}"
         }
        ],
        "@_id": "a"
@@ -794,15 +794,15 @@ const _KeyboardData =
        "flick": [
         {
          "@_directions": "nw",
-         "@_to": "\\u4567"
+         "@_to": "\\u{4567}"
         },
         {
          "@_directions": "nw se",
-         "@_to": "\\uFFFF"
+         "@_to": "\\u{FFFF}"
         },
         {
          "@_directions": "e",
-         "@_to": "\\uFFF0"
+         "@_to": "\\u{FFF0}"
         }
        ],
        "@_id": "b"
@@ -972,78 +972,222 @@ const _KeyboardData =
       }
      ]
     },
-    "transforms": [
-     {
-      "transformGroup": [
-       {
-        "transform": [
-         {
-          "@_from": "${grave}($[vowel])",
-          "@_to": "$[1:graveVowel]"
-         },
-         {
-          "@_from": "${caret}($[vowel])",
-          "@_to": "$[1:caretVowel]"
-         },
-         {
-          "@_from": "${umlaut}($[vowel])",
-          "@_to": "$[1:umlautVowel]"
-         },
-         {
-          "@_from": "${umlaut}y",
-          "@_to": "ÿ"
-         },
-         {
-          "@_from": "${tilde}a",
-          "@_to": "ã"
-         },
-         {
-          "@_from": "${tilde}A",
-          "@_to": "Ã"
-         },
-         {
-          "@_from": "${tilde}n",
-          "@_to": "ñ"
-         },
-         {
-          "@_from": "${tilde}N",
-          "@_to": "Ñ"
-         },
-         {
-          "@_from": "${tilde}o",
-          "@_to": "õ"
-         },
-         {
-          "@_from": "${tilde}O",
-          "@_to": "Õ"
-         },
-         {
-          "@_from": "($[spacing_accent])",
-          "@_to": "$1"
-         }
-        ]
-       },
-       {
-        "reorder": [
-         {
-          "@_from": "\\u1A60",
-          "@_order": "127"
-         },
-         {
-          "@_from": "\\u1A6B",
-          "@_order": "42"
-         },
-         {
-          "@_from": "[\\u1A75-\\u1A79]",
-          "@_order": "55"
-         }
-        ]
-       }
-      ],
-      "@_type": "simple"
-     }
-    ],
+    "transforms": {
+     "transformGroup": [
+      {
+       "transform": [
+        {
+         "@_from": "${grave}($[vowel])",
+         "@_to": "$[1:graveVowel]"
+        },
+        {
+         "@_from": "${caret}($[vowel])",
+         "@_to": "$[1:caretVowel]"
+        },
+        {
+         "@_from": "${umlaut}($[vowel])",
+         "@_to": "$[1:umlautVowel]"
+        },
+        {
+         "@_from": "${umlaut}y",
+         "@_to": "ÿ"
+        },
+        {
+         "@_from": "${tilde}a",
+         "@_to": "ã"
+        },
+        {
+         "@_from": "${tilde}A",
+         "@_to": "Ã"
+        },
+        {
+         "@_from": "${tilde}n",
+         "@_to": "ñ"
+        },
+        {
+         "@_from": "${tilde}N",
+         "@_to": "Ñ"
+        },
+        {
+         "@_from": "${tilde}o",
+         "@_to": "õ"
+        },
+        {
+         "@_from": "${tilde}O",
+         "@_to": "Õ"
+        },
+        {
+         "@_from": "($[spacing_accent])",
+         "@_to": "$1"
+        }
+       ]
+      },
+      {
+       "reorder": [
+        {
+         "@_from": "\\u{1A60}",
+         "@_order": "127"
+        },
+        {
+         "@_from": "\\u{1A6B}",
+         "@_order": "42"
+        },
+        {
+         "@_from": "[\\u{1A75}-\\u{1A79}]",
+         "@_order": "55"
+        }
+       ]
+      }
+     ],
+     "@_type": "simple"
+    },
     "@_locale": "fr-t-k0-azerty",
+    "@_conformsTo": "techpreview"
+   }
+  },
+  "pcm.xml": {
+   "?xml": {
+    "@_version": "1.0",
+    "@_encoding": "UTF-8"
+   },
+   "keyboard3": {
+    "version": {
+     "@_number": "1.0.0"
+    },
+    "names": {
+     "name": [
+      {
+       "@_value": "Nigerian Pidgin"
+      },
+      {
+       "@_value": "Naijíriá Píjin"
+      }
+     ]
+    },
+    "settings": {
+     "@_fallback": "omit"
+    },
+    "keys": {
+     "import": [
+      {
+       "@_base": "cldr",
+       "@_path": "techpreview/keys-Zyyy-punctuation.xml"
+      },
+      {
+       "@_base": "cldr",
+       "@_path": "techpreview/keys-Zyyy-currency.xml"
+      }
+     ],
+     "key": [
+      {
+       "@_id": "grave",
+       "@_to": "\\u{300}"
+      },
+      {
+       "@_id": "backquote",
+       "@_to": "`"
+      },
+      {
+       "@_id": "acute",
+       "@_to": "\\u{301}"
+      },
+      {
+       "@_id": "odot",
+       "@_to": "ọ"
+      },
+      {
+       "@_id": "Odot",
+       "@_to": "Ọ"
+      },
+      {
+       "@_id": "edot",
+       "@_to": "ẹ"
+      },
+      {
+       "@_id": "Edot",
+       "@_to": "Ẹ"
+      },
+      {
+       "@_id": "naira",
+       "@_to": "₦"
+      }
+     ]
+    },
+    "layers": {
+     "layer": [
+      {
+       "row": [
+        {
+         "@_keys": "grave 1 2 3 4 5 6 7 8 9 0 hyphen equal"
+        },
+        {
+         "@_keys": "acute w e r t y u i o p open-square close-square"
+        },
+        {
+         "@_keys": "a s d f g h j k l odot edot slash"
+        },
+        {
+         "@_keys": "slash z c v b n m comma period semi-colon apos"
+        },
+        {
+         "@_keys": "space"
+        }
+       ],
+       "@_modifier": "none"
+      },
+      {
+       "row": [
+        {
+         "@_keys": "grave bang at hash dollar naira percent amp asterisk open-paren close-paren underscore plus"
+        },
+        {
+         "@_keys": "A S D F G H J K L Odot Edot question"
+        },
+        {
+         "@_keys": "A S D F G H J K L Odot Edot"
+        },
+        {
+         "@_keys": "question Z C V B N M open-angle close-angle colon double-quote"
+        },
+        {
+         "@_keys": "space"
+        }
+       ],
+       "@_modifier": "shift"
+      },
+      {
+       "row": [
+        {
+         "@_keys": "backquote 1 2 3 4 5 6 7 8 9 0 hyphen equal"
+        },
+        {
+         "@_keys": "Q W E R T Y U I O P open-square close-square"
+        },
+        {
+         "@_keys": "A S D F G H J K L Odot Edot slash"
+        },
+        {
+         "@_keys": "slash Z C V B N M comma period semi-colon apos"
+        },
+        {
+         "@_keys": "space"
+        }
+       ],
+       "@_modifier": "caps"
+      }
+     ],
+     "@_form": "iso"
+    },
+    "transforms": {
+     "transformGroup": {
+      "transform": {
+       "@_from": "''",
+       "@_to": "\\u{323}"
+      }
+     },
+     "@_type": "simple"
+    },
+    "@_locale": "pcm",
     "@_conformsTo": "techpreview"
    }
   },
@@ -1052,7 +1196,7 @@ const _KeyboardData =
     "@_version": "1.0",
     "@_encoding": "UTF-8"
    },
-   "keyboard": {
+   "keyboard3": {
     "locales": {
      "locale": {
       "@_id": "en"
@@ -1341,13 +1485,84 @@ const _KeyboardData =
       "@_id": "us"
      },
      {
+      "scanCodes": [
+       {
+        "@_codes": "29 02 03 04 05 06 07 08 09 0A 0B 0C 0D"
+       },
+       {
+        "@_codes": "10 11 12 13 14 15 16 17 18 19 1A 1B"
+       },
+       {
+        "@_codes": "1E 1F 20 21 22 23 24 25 26 27 28 2B"
+       },
+       {
+        "@_codes": "56 2C 2D 2E 2F 30 31 32 33 34 35"
+       },
+       {
+        "@_codes": "39"
+       }
+      ],
       "@_id": "iso"
      },
      {
+      "scanCodes": [
+       {
+        "@_codes": "29 02 03 04 05 06 07 08 09 0A 0B 0C 0D"
+       },
+       {
+        "@_codes": "10 11 12 13 14 15 16 17 18 19 1A 1B"
+       },
+       {
+        "@_codes": "1E 1F 20 21 22 23 24 25 26 27 28 2B"
+       },
+       {
+        "@_codes": "56 2C 2D 2E 2F 30 31 32 33 34 35 73"
+       },
+       {
+        "@_codes": "39"
+       }
+      ],
       "@_id": "abnt2"
      },
      {
+      "scanCodes": [
+       {
+        "@_codes": "29 02 03 04 05 06 07 08 09 0A 0B 0C 0D 7D"
+       },
+       {
+        "@_codes": "10 11 12 13 14 15 16 17 18 19 1A 1B"
+       },
+       {
+        "@_codes": "1E 1F 20 21 22 23 24 25 26 27 28 2B"
+       },
+       {
+        "@_codes": "56 2C 2D 2E 2F 30 31 32 33 34 35 73"
+       },
+       {
+        "@_codes": "39"
+       }
+      ],
       "@_id": "jis"
+     },
+     {
+      "scanCodes": [
+       {
+        "@_codes": "29 02 03 04 05 06 07 08 09 0A 0B 0C 0D 7D"
+       },
+       {
+        "@_codes": "10 11 12 13 14 15 16 17 18 19 1A 1B 2B"
+       },
+       {
+        "@_codes": "1E 1F 20 21 22 23 24 25 26 27 28"
+       },
+       {
+        "@_codes": "2C 2D 2E 2F 30 31 32 33 34 35"
+       },
+       {
+        "@_codes": "39"
+       }
+      ],
+      "@_id": "ks"
      }
     ]
    }
