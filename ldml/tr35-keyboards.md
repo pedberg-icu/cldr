@@ -92,8 +92,6 @@ The LDML specification is divided into the following parts:
   * [Element: layers](#Element_layers)
   * [Element: layer](#Element_layer)
   * [Element: row](#Element_row)
-  * [Element: vkeys](#Element_vkeys)
-  * [Element: vkey](#Element_vkey)
   * [Element: variables](#Element_variables)
   * [Element: string](#element-string)
   * [Element: set](#element-set)
@@ -116,7 +114,6 @@ The LDML specification is divided into the following parts:
 * [Keyboard IDs](#Keyboard_IDs)
   * [Principles for Keyboard IDs](#Principles_for_Keyboard_IDs)
 * [Platform Behaviors in Edge Cases](#Platform_Behaviors_in_Edge_Cases)
-* [CLDR VKey Enum](#CLDR_VKey_Enum)
 * [Keyboard Test Data](#keyboard-test-data)
   * [Test Doctype](#test-doctype)
   * [Test Element: keyboardTest](#test-element-keyboardtest)
@@ -172,7 +169,7 @@ Some goals of this format are:
 Some non-goals (outside the scope of the format) currently are:
 
 1. Adaptation for screen scaling resolution. Instead, keyboards should define layouts based on physical size. Platforms may interpret physical size definitions and adapt for different physical screen sizes with different resolutions.
-2. Unification of platform-specific vkey and scan code mapping tables.
+2. Unification of platform-specific virtual key and scan code mapping tables.
 3. Unification of pre-existing platform layouts themselves (e.g. existing fr-azerty on platform a, b, c).
 4. Support for prior (pre 3.0) CLDR keyboard files. See [Compatibility Notice](#Compatibility_Notice).
 5. Run-time efficiency. [LDML is explicitly an interchange format](./tr35.md#Introduction), and so it is expected that data will be transformed to a more compact format for use by a keystroke processing engine.
@@ -202,18 +199,18 @@ Keyboard use can be challenging for individuals with various types of disabiliti
 
 ## <a name="Definitions" href="#Definitions">Definitions</a>
 
-**Arrangement** is the term used to describe the relative position of the rectangles that represent keys, either physically or virtually. A physical keyboard has a static arrangement while a virtual keyboard may have a dynamic arrangement that changes per language and/or layer. While the arrangement of keys on a keyboard may be fixed, the mapping of those keys may vary.
+**Arrangement:** The relative position of the rectangles that represent keys, either physically or virtually. A hardware keyboard has a static arrangement while a touch keyboard may have a dynamic arrangement that changes per language and/or layer. While the arrangement of keys on a keyboard may be fixed, the mapping of those keys may vary.
 
 **Base character:** The character emitted by a particular key when no modifiers are active. In ISO terms, this is group 1, level 1.
 
-**Base map:** A mapping from the positions to the base characters. There is only one base map per layout. The characters on this map can be output without the use of any modifier keys.
+**Base character:** The character emitted by a particular key when no modifiers are active. In ISO 9995-1:2009 terms, this is Group 1, Level 1.
 
-**Core keys:** also known as “alpha” block. The primary set of key values on a keyboard that are used for typing the target language of the keyboard. For example, the three rows of letters on a standard US QWERTY keyboard (QWERTYUIOP, ASDFGHJKL, ZXCVBNM) together with the most significant punctuation keys. Usually this equates to the minimal keyset for a language as seen on mobile phone keyboards.
+**Core keys:** also known as “alphanumeric” section. The primary set of key values on a keyboard that are used for typing the target language of the keyboard. For example, the three rows of letters on a standard US QWERTY keyboard (QWERTYUIOP, ASDFGHJKL, ZXCVBNM) together with the most significant punctuation keys. Usually this equates to the minimal set of keys for a language as seen on mobile phone keyboards.
 Distinguished from the **frame keys**.
 
-**Dead keys:** These are keys which do not emit normal characters by themselves.  They are so named because to the user, they may appear to be “dead,” i.e., non-functional. However, they do produce a change to the input context. For example, in many Latin keyboards hitting the `^` dead-key followed by the `e` key produces `ê`. The `^` by itself may be invisible or presented in a special way by the platform.
+**Dead keys:** These are keys which do not emit normal characters by themselves. They are so named because to the user, they may appear to be “dead,” i.e., non-functional. However, they do produce a change to the input context. For example, in many Latin keyboards hitting the `^` dead-key followed by the `e` key produces `ê`. The `^` by itself may be invisible or presented in a special way by the platform.
 
-**Frame keys:** These are keys which do not emit characters and are outside of the area of the **core keys**. These keys include both **modifier** keys, such as Shift or Ctrl, but also include platform specific keys: Fn, IME and layout-switching keys, cursor keys, emoji keys.
+**Frame keys:** These are keys which are outside of the area of the **core keys** and typically do not emit characters. These keys include **modifier** keys, such as Shift or Ctrl, but also include platform specific keys: Fn, IME and layout-switching keys, cursor keys, insert emoji keys etc.
 
 **Hardware keyboard:** an input device which has individual keys that are pressed. Each key has a unique identifier and the arrangement doesn't change, even if the mapping of those keys does. Also known as a physical keyboard.
 
@@ -231,29 +228,29 @@ One may also extend the notion of the ISO layout to support keys that don't map 
 
 If it becomes necessary in the future, the format could extend the ISO layout to support keys that are located to the left of the "00" column by using negative column numbers "-01", "-02" and so on, or 100's complement "99", "98",... -->
 
-**Key:** A key on a physical keyboard, or a virtual key on an on-screen layout.
+**Key:** A physical key on a hardware keyboard, or a virtual key on a touch keyboard.
 
 **Key code:** The integer code sent to the application on pressing a key.
 
 **Key map:** The basic mapping between hardware or on-screen positions and the output characters for each set of modifier combinations associated with a particular layout. There may be multiple key maps for each layout.
 
-**Keyboard:** A particular arrangement of keys for the inputting of text, such as either a physical or virtual keyboard.
+**Keyboard:** A particular arrangement of keys for the inputting of text, such as a hardware keyboard or a touch keyboard.
 
 **Keyboard author:** The person or group of people designing and producing a particular keyboard layout designed to support one or more languages. In the context of this specification, that author may be editing the LDML XML file directly or by means of software tools.
 
 **Keyboard layout:** A layout is the overall keyboard configuration for a particular locale. Within a keyboard layout, there is a single base map, one or more key maps and zero or more transforms.
 
-**Layer** is an arrangement of keys on a virtual keyboard. A virtual keyboard is made up of a set of layers. Each layer may have a different key layout, unlike with a physical keyboard, and may not correspond directly to a physical keyboard's modifier keys. A layer is accessed via a switch key. See also virtual keyboard, modifier, switch.
+**Layer** is an arrangement of keys on a touch keyboard. A touch keyboard is made up of a set of layers. Each layer may have a different key layout, unlike with a hardware keyboard, and may not correspond directly to a hardware keyboard's modifier keys. A layer is accessed via a switch key. See also touch keyboard, modifier, switch.
 
-**Long-press key:** also known as a “child key”. A secondary key that is invoked from a top level key on a software keyboard. Secondary keys typically provide access to variants of the top level key, such as accented variants (a => á, à, ä, ã)
+**Long-press key:** also known as a “child key”. A secondary key that is invoked from a top level key on a touch keyboard. Secondary keys typically provide access to variants of the top level key, such as accented variants (a => á, à, ä, ã)
 
-**Modifier:** A key that is held to change the behavior of a hardware keyboard. For example, the "Shift" key allows access to upper-case characters on a US keyboard. Other modifier keys include but are not limited to: Ctrl, Alt, Option, Command and Caps Lock. On a touch layout, keys that appear to be modifier keys should be considered to be layer-switching keys.
+**Modifier:** A key that is held to change the behavior of a hardware keyboard. For example, the "Shift" key allows access to upper-case characters on a US keyboard. Other modifier keys include but are not limited to: Ctrl, Alt, Option, Command and Caps Lock. On a touch keyboard, keys that appear to be modifier keys should be considered to be layer-switching keys.
 
 **Physical keyboard:** see **Hardware keyboard**
 
-**Touch keyboard** is a keyboard that is rendered on a, typically, touch surface. It has a dynamic arrangement and contrasts with a hardware keyboard. This term has many synonyms: software keyboard, SIP (Software Input Panel), virtual keyboard. This contrasts with other uses of the term virtual keyboard as an on-screen keyboard for reference or accessibility data entry.
+**Touch keyboard:** A keyboard that is rendered on a, typically, touch surface. It has a dynamic arrangement and contrasts with a hardware keyboard. This term has many synonyms: software keyboard, SIP (Software Input Panel), virtual keyboard. This contrasts with other uses of the term virtual keyboard as an on-screen keyboard for reference or accessibility data entry.
 
-**Transform:** A transform is an element that specifies a set of conversions from sequences of code points into one (or more) other code points. Transforms may reorder or replace text. They may be used to implement “dead key” behaviors, simple orthographic corrections, and visual (typewriter) type input.
+**Transform:** A transform is an element that specifies a set of conversions from sequences of code points into one (or more) other code points. Transforms may reorder or replace text. They may be used to implement “dead key” behaviors, simple orthographic corrections, visual (typewriter) type input etc.
 
 **Virtual keyboard:** see **Touch keyboard**
 
@@ -283,9 +280,9 @@ The `\u{...}` notation, a subset of hex notation, is described in [UTS #18 secti
 * `value` on the `<variable>` element
 * `to` and `display` on the `<display>` element
 * `baseCharacter` on the `<displayOptions>` element
-* Some attributes on [Keyboard Test Data](#Keyboard Test Data) subelements
+* Some attributes on [Keyboard Test Data](#keyboard-test-data) subelements
 
-Characters of general category of Combining Mark (M), Control characters (Cc), Format characters (Cf), and whitespace other than space should be encoded using one of the notation above as appropriate.
+Characters of general category of Mark (M), Control characters (Cc), Format characters (Cf), and whitespace other than space should be encoded using one of the notation above as appropriate.
 
 Attribute values escaped in this manner are annotated with the `<!--@ALLOWS_UESC-->` DTD annotation, see [DTD Annotations](tr35.md#57-dtd-annotations)
 
@@ -293,8 +290,8 @@ Attribute values escaped in this manner are annotated with the `<!--@ALLOWS_UESC
 
 ## <a name="File_and_Dir_Structure" href="#File_and_Dir_Structure">File and Directory Structure</a>
 
-* New collection of layouts that are prescriptive, and define the common core for a keyboard that can be consumed as data for implementation on different platforms. This collection will be in a different location than the existing CLDR keyboard files under main/keyboards. We should remove the existing data files, but keep the old DTD in the same place for compatibility, and also so that conversion tools can use it to read older files.
-* New layouts will have version metadata to indicate their spec compliance versi​​on number.  For this tech preview, the value used must be `techpreview`.
+* New collection of layouts that are prescriptive, and define the common core for a keyboard that can be consumed as data for implementation on different platforms will be included in the CLDR repository. This collection will be in a different location than the existing CLDR keyboard files under main/keyboards. We should remove the existing data files, but keep the old DTD in the same place for compatibility, and also so that conversion tools can use it to read older files.
+* New layouts will have version metadata to indicate their specification compliance versi​​on number. For this tech preview, the value used must be `techpreview`.
 
 ```xml
 <keyboard3 conformsTo="techpreview"/>
@@ -310,7 +307,7 @@ Attribute values escaped in this manner are annotated with the `<!--@ALLOWS_UESC
 
 ### <a name="Extensibility" href="#Extensibility">Extensibility</a>
 
-For extensibility, the `<special>` element will be allowed at every nearly every level.
+For extensibility, the `<special>` element will be allowed at nearly every level.
 
 See [Element special](tr35.md#special) in Part 1.
 
@@ -336,7 +333,7 @@ This is the top level element. All other elements defined below are under this e
 >
 > Parents: _none_
 >
-> Children: [displays](#Element_displays), [import](#Element_import), [info](#Element_info), [keys](#Element_keys), [layers](#Element_layers), [locales](#Element_locales), [names](#Element_names), [settings](#Element_settings), [_special_](tr35.md#special), [transforms](#Element_transforms), [variables](#Element_variables), [version](#Element_version), [vkeys](#Element_vkeys)
+> Children: [displays](#Element_displays), [import](#Element_import), [info](#Element_info), [keys](#Element_keys), [layers](#Element_layers), [locales](#Element_locales), [names](#Element_names), [settings](#Element_settings), [_special_](tr35.md#special), [transforms](#Element_transforms), [variables](#Element_variables), [version](#Element_version)
 >
 > Occurrence: required, single
 >
@@ -347,7 +344,7 @@ _Attribute:_ `conformsTo` (required)
 This attribute distinguishes the keyboard from prior versions,
 and it also specifies the minimum CLDR version required.
 
-For purposes of this current draft spec, the value should always be `techpreview`
+For purposes of this current draft specification, the value should always be `techpreview`.
 
 ```xml
 <keyboard3 … conformsTo="techpreview"/>
@@ -429,9 +426,9 @@ See [Principles for Keyboard IDs](#Principles_for_Keyboard_IDs) for discussion a
 <!-- Pan Nigerian Keyboard-->
 <keyboard3 locale="mul-Latn-NG-t-k0-panng">
     <locales>
-    <locale id="ha"/>
-    <locale id="ig"/>
-    <!-- others … -->
+        <locale id="ha"/>
+        <locale id="ig"/>
+        <!-- others … -->
     </locales>
 </keyboard3>
 ```
@@ -460,7 +457,7 @@ Element used to keep track of the source data version.
 
 _Attribute:_ `number` (required)
 
-> Must be a [[SEMVER](https://semver.org)] compatible version number, such as `1.0.0`
+> Must be a [[SEMVER](https://semver.org)] compatible version number, such as `1.0.0` or `38.0.0-beta.11`
 
 _Attribute:_ `cldrVersion` (fixed by DTD)
 
@@ -724,16 +721,17 @@ _Attribute:_ `longPress="a b c"` (optional)
 
 > The `longPress` attribute contains any characters that can be emitted by "long-pressing" a key, this feature is prominent in mobile devices. The possible sequences of characters that can be emitted are whitespace delimited. Control characters, combining marks and whitespace (which is intended to be a long-press option) in this attribute are escaped using the `\u{...}` notation.
 >
+
 _Attribute:_ `longPressDefault` (optional)
 
 > Indicates which of the `longPress` target characters is the default long-press target, which could be different than the first element. Ignored if not in the `longPress` list. Characters in this attribute can be escaped using the `\u{...}` notation.
-> For example, if the `longPressDefault` is a key whose [display](#Element_displays) appears as `{` an implementation might render the key as follows:
+> For example, if the `longPressDefault` is a key whose [display](#Element_displays) value is `{`, an implementation might render the key as follows:
 >
 > ![keycap hint](images/keycapHint.png)
 
 _Attribute:_ `multiTap` (optional)
 
-> A space-delimited list of strings, where each successive element of the list is produced by the corresponding number of quick taps. For example, three taps on the key C01 will produce a “c” in the following example (first tap produces “a”, two taps produce “bb” etc.).
+> A space-delimited list of strings, where each successive element of the list is produced by the corresponding number of quick taps. In the following example, three taps on the key will produce a “c” (first tap produces “a”, two taps produce “bb” etc.).
 >>
 > _Example:_
 >
@@ -765,7 +763,7 @@ _Attribute:_ `switch="shift"` (optional)
 _Attribute:_ `to`
 
 > The `to` attribute contains the output sequence of characters that is emitted when pressing this particular key. Control characters, whitespace (other than the regular space character) and combining marks in this attribute are escaped using the `\u{...}` notation. More than one key may output the same output.
-
+>
 > The `to` attribute may also contain the `\m{…}` syntax to insert a marker. See the definition of [markers](#markers).
 
 _Attribute:_ `transform="no"` (optional)
@@ -949,7 +947,7 @@ where a flick to the Northeast then South produces two code points.
 ### <a name="Element_import" href="#Element_import">Element: import</a>
 
 The `import` element is used to reference another xml file so that elements are imported from
-another file. The use case is to be able to import a standard set of vkeys, transforms, and similar
+another file. The use case is to be able to import a standard set of transforms, and similar
 from the CLDR repository.  `<import>` is not recommended as a way for keyboard authors to
 split up their keyboard into multiple files, as the intent is for each single XML file to contain all that is needed for a keyboard layout.
 
@@ -964,8 +962,7 @@ If two identical elements are defined, the later element will take precedence, t
 ```
 > <small>
 >
-> Parents: [displays](#Element_displays), [keyboard3](#Element_keyboard), [keys](#Element_keys), [layers](#Element_layers), [names](#Element_names), [reorders](#Element_reorders), [transformGroup](#Element_transformGroup), [transforms](#Element_transforms), [variables](#Element_variables), [vkeys](#Element_vkeys)
->
+> Parents: [displays](#Element_displays), [keyboard3](#Element_keyboard), [keys](#Element_keys), [layers](#Element_layers), [names](#Element_names), [reorders](#Element_reorders), [transformGroup](#Element_transformGroup), [transforms](#Element_transforms), [variables](#Element_variables)
 > Children: _none_
 >
 > Occurrence: optional, multiple
@@ -1393,8 +1390,6 @@ _Attribute:_ `modifier` (required for `hardware`)
 >
 > Left- and right- side modifiers (such as `"altL ctrlR"` or `"altL altR"`) should not be used together in a single `modifier` attribute value.
 >
-> Left- and right- side modifiers (such as `"altL ctrlR"` or `"altL altR"`) should not be used together in a single `modifier` attribute value.
-
 > For hardware layouts, the use of `@modifier` as an identifier for a layer is sufficient since it is always unique among the set of `layer` elements in a keyboard.
 >
 > The set of modifiers must match `(none|([A-Za-z0-9]+)( [A-Za-z0-9]+)*)`
@@ -1435,79 +1430,6 @@ Here is an example of a `row` element:
 
 ```xml
 <row keys="a z e r t y u i o p caret dollar" />
-```
-
-* * *
-
-### <a name="Element_vkeys" href="#Element_vkeys">Element: vkeys</a>
-
-On some architectures, applications may directly interact with keys before they are converted to characters. The keys are identified using a virtual key identifier or vkey. The mapping between a physical keyboard key and a vkey is keyboard-layout dependent. For example, a French keyboard would identify the top-left key (ISO D01) as being an `A` with a vkey of `A` as opposed to `Q` on a US English keyboard. While vkeys are layout dependent, they are not modifier dependent. A shifted key always has the same vkey as its unshifted counterpart. In effect, a key may be identified by its vkey and the modifiers active at the time the key was pressed.
-
-**Syntax**
-
-```xml
-<vkeys>
-    {a set of vkey elements}
-</vkeys>
-```
-
-> <small>
->
-> Parents: [keyboard3](#Element_keyboard)
->
-> Children: [import](#Element_import), [_special_](tr35.md#special), [vkey](#Element_vkey)
->
-> Occurrence: optional, single
->
-> </small>
-
-There is at most a single vkeys element per keyboard.
-
-A `vkeys` element consists of a list of `vkey` elements.
-
-* * *
-
-### <a name="Element_vkey" href="#Element_vkey">Element: vkey</a>
-
-A `vkey` element describes a mapping between a key and a vkey.
-
-**Syntax**
-
-```xml
-<vkey from="{from}" to="{to}" />
-```
-
-> <small>
->
-> Parents: [vkeys](#Element_vkeys)
->
-> Children: _none_
->
-> Occurrence: required, multiple
->
-> </small>
-
-_Attribute:_ `from` (required)
-
-> The vkey being mapped from. See [CLDR VKey Enum](#CLDR_VKey_Enum) for a reference table.
-
-_Attribute:_ `to` (required)
-
-> The resultant vkey identifier. See [CLDR VKey Enum](#CLDR_VKey_Enum) for a reference table.
-
-**Example**
-
-This example shows some of the mappings for a French keyboard layout:
-
-```xml
-<keyboard3>
-    <vkeys>
-		  <vkey from="Q" to="A" />
-		  <vkey from="W" to="Z" />
-		  <vkey from="A" to="Q" />
-		  <vkey from="Z" to="W" />
-    </vkeys>
-</keyboard3>
 ```
 
 * * *
@@ -1649,7 +1571,7 @@ Map from upper to lower:
 <transform from="($[upper])" to="$[1:lower]" />
 ```
 
-See [transform](#element-transform) for further details.
+See [transform](#element-transform) for further details and syntax.
 
 * * *
 
@@ -2079,7 +2001,7 @@ Used in the `to=`
 
 - **Insert a mapped set**
 
-    `$[1:variable]` (Where "1" is be any numbered capture group from 1 to 9)
+    `$[1:variable]` (Where "1" is any numbered capture group from 1 to 9)
 
     Maps capture group 1 to variable `variable`. The `from=` side must also contain a grouped variable. This expression may appear anywhere or multiple times in the `to=` pattern.
 
@@ -2590,72 +2512,9 @@ The following are the design principles for the IDs.
 
 | Platform | No modifier combination match is available | No map match is available for key position | Transform fails (i.e. if \^d is pressed when that transform does not exist) |
 |----------|--------------------------------------------|--------------------------------------------|---------------------------------------------------------------------------|
-| Chrome OS | Fall back to base | Fall back to character in a keyMap with same "level" of modifier combination. If this character does not exist, fall back to (n-1) level. (This is handled data-generation-side.) <br/> In the spec: No output | No output at all |
+| Chrome OS | Fall back to base | Fall back to character in a keyMap with same "level" of modifier combination. If this character does not exist, fall back to (n-1) level. (This is handled data-generation-side.) <br/> In the specification: No output | No output at all |
 | Mac OS X  | Fall back to base (unless combination is some sort of keyboard shortcut, e.g. cmd-c) | No output | Both keys are output separately |
 | Windows  | No output | No output | Both keys are output separately |
-
-* * *
-
-## <a name="CLDR_VKey_Enum" href="#CLDR_VKey_Enum">CLDR VKey Enum</a></a>
-
-In the following chart, “CLDR Name” indicates the value used with the `from` and `to` attributes of the [vkey](#Element_vkey) element.
-
-| CLDR Name | US English ISO | Hex<sup>1</sup> | Notes       |
-|-----------|----------------|-----------------|-------------|
-| SPACE     | A03            | 0x20            |
-| 0         | E10            | 0x30            |
-| 1         | E01            | 0x31            |
-| 2         | E02            | 0x32            |
-| 3         | E03            | 0x33            |
-| 4         | E04            | 0x34            |
-| 5         | E05            | 0x35            |
-| 6         | E06            | 0x36            |
-| 7         | E07            | 0x37            |
-| 8         | E08            | 0x38            |
-| 9         | E09            | 0x39            |
-| A         | C01            | 0x41            |
-| B         | B05            | 0x42            |
-| C         | B03            | 0x43            |
-| D         | C03            | 0x44            |
-| E         | D03            | 0x45            |
-| F         | C04            | 0x46            |
-| G         | C05            | 0x47            |
-| H         | C06            | 0x48            |
-| I         | D08            | 0x49            |
-| J         | C07            | 0x4A            |
-| K         | C08            | 0x4B            |
-| L         | C09            | 0x4C            |
-| M         | B07            | 0x4D            |
-| N         | B06            | 0x4E            |
-| O         | D09            | 0x4F            |
-| P         | D10            | 0x50            |
-| Q         | D01            | 0x51            |
-| R         | D04            | 0x52            |
-| S         | C02            | 0x53            |
-| T         | D05            | 0x54            |
-| U         | D07            | 0x55            |
-| V         | B05            | 0x56            |
-| W         | D02            | 0x57            |
-| X         | B02            | 0x58            |
-| Y         | D06            | 0x59            |
-| Z         | B01            | 0x5A            |
-| SEMICOLON | C10            | 0xBA            |
-| EQUAL     | E12            | 0xBB            |
-| COMMA     | B08            | 0xBC            |
-| HYPHEN    | E11            | 0xBD            |
-| PERIOD    | B09            | 0xBE            |
-| SLASH     | B10            | 0xBF            |
-| GRAVE     | E00            | 0xC0            |
-| LBRACKET  | D11            | 0xDB            |
-| BACKSLASH | D13            | 0xDC            |
-| RBRACKET  | D12            | 0xDD            |
-| QUOTE     | C11            | 0xDE            |
-| LESS-THAN | B00            | 0xE2            | 102nd key on European layouts, right of left shift.                  |
-| ABNT2     | B11            | 0xC1            | Extra key, left of right-shift, Brazilian Portuguese ABNT2 keyboards |
-
-Footnotes:
-
-* <sup>1</sup> Hex value from Windows, web standards, Keyman, etc.
 
 * * *
 
