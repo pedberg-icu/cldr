@@ -74,13 +74,12 @@ The LDML specification is divided into the following parts:
   * [Element: locale](#Element_locale)
   * [Element: version](#Element_version)
   * [Element: info](#Element_info)
-  * [Element: names](#Element_names)
-  * [Element: name](#Element_name)
   * [Element: settings](#Element_settings)
   * [Element: keys](#Element_keys)
   * [Element: key](#Element_key)
     * [Implied Keys](#implied-keys)
-    * [Elements: flicks, flick](#Element_flicks)
+    * [Elements: flicks](#Element_flicks)
+    * [Elements: flick, flickSegment](#Element_flick)
   * [Element: import](#Element_import)
   * [Element: displays](#Element_displays)
   * [Element: display](#Element_display)
@@ -91,6 +90,9 @@ The LDML specification is divided into the following parts:
   * [Element: scanCodes](#Element_scanCodes)
   * [Element: layers](#Element_layers)
   * [Element: layer](#Element_layer)
+    * [Layer Modifier Components](#layer-modifier-components)
+    * [Modifier Left- and Right- keys](#modifier-left--and-right--keys)
+    * [Layer Modifier Matching](#layer-modifier-matching)
   * [Element: row](#Element_row)
   * [Element: variables](#Element_variables)
   * [Element: string](#element-string)
@@ -202,8 +204,6 @@ Keyboard use can be challenging for individuals with various types of disabiliti
 
 **Arrangement:** The relative position of the rectangles that represent keys, either physically or virtually. A hardware keyboard has a static arrangement while a touch keyboard may have a dynamic arrangement that changes per language and/or layer. While the arrangement of keys on a keyboard may be fixed, the mapping of those keys may vary.
 
-**Base character:** The character emitted by a particular key when no modifiers are active. In ISO terms, this is group 1, level 1.
-
 **Base character:** The character emitted by a particular key when no modifiers are active. In ISO 9995-1:2009 terms, this is Group 1, Level 1.
 
 **Core keys:** also known as “alphanumeric” section. The primary set of key values on a keyboard that are used for typing the target language of the keyboard. For example, the three rows of letters on a standard US QWERTY keyboard (QWERTYUIOP, ASDFGHJKL, ZXCVBNM) together with the most significant punctuation keys. Usually this equates to the minimal set of keys for a language as seen on mobile phone keyboards.
@@ -275,11 +275,10 @@ Currently, the following attribute values allow _UnicodeSet_ notation:
 
 The `\u{...}` notation, a subset of hex notation, is described in [UTS #18 section 1.1](https://www.unicode.org/reports/tr18/#Hex_notation). It can refer to one or multiple individual codepoints. Currently, the following attribute values allow the `\u{...}` notation:
 
-* `to`, `longPress`, `multiTap`, and `longPressDefault` on the `<key>` element
-* `to` on the `<flick>` element
+* `output` on the `<key>` element
 * `from` or `to` on the `<transform>` element
 * `value` on the `<variable>` element
-* `to` and `display` on the `<display>` element
+* `output` and `display` on the `<display>` element
 * `baseCharacter` on the `<displayOptions>` element
 * Some attributes on [Keyboard Test Data](#keyboard-test-data) subelements
 
@@ -334,7 +333,7 @@ This is the top level element. All other elements defined below are under this e
 >
 > Parents: _none_
 >
-> Children: [displays](#Element_displays), [import](#Element_import), [info](#Element_info), [keys](#Element_keys), [layers](#Element_layers), [locales](#Element_locales), [names](#Element_names), [settings](#Element_settings), [_special_](tr35.md#special), [transforms](#Element_transforms), [variables](#Element_variables), [version](#Element_version)
+> Children: [displays](#Element_displays), [import](#Element_import), [info](#Element_info), [keys](#Element_keys), [flicks](#Element_flicks), [layers](#Element_layers), [locales](#Element_locales), [settings](#Element_settings), [_special_](tr35.md#special), [transforms](#Element_transforms), [variables](#Element_variables), [version](#Element_version)
 >
 > Occurrence: required, single
 >
@@ -485,7 +484,9 @@ Element containing informative properties about the layout, for displaying in us
 **Syntax**
 
 ```xml
-<info author="{author}"
+<info
+      name="{keyboard name}"
+      author="{author}"
       layout="{hint of the layout}"
       indicator="{short identifier}" />
 ```
@@ -496,9 +497,26 @@ Element containing informative properties about the layout, for displaying in us
 >
 > Children: _none_
 >
-> Occurrence: optional, single
+> Occurrence: required, single
 >
 > </small>
+
+_Attribute:_ `name` (required)
+
+> Note that this is the only required attribute for the `<info>` element.
+>
+> This attribute is an informative name for the keyboard.
+
+```xml
+<keyboard3 locale="bg-t-k0-phonetic-trad">
+    …
+    <info name="Bulgarian (Phonetic Traditional)" />
+    …
+</keyboard3>
+```
+
+* * *
+
 
 _Attribute:_ `author`
 
@@ -519,69 +537,6 @@ _Attribute:_ `indicator`
 
 * * *
 
-### <a name="Element_names" href="#Element_names">Element: names</a>
-
-Element used to store any names given to the layout.
-
-These names are not localized but are informative names for the keyboard. Localization of these names would be done as separate data items elsewhere in CLDR.
-
-**Syntax**
-
-```xml
-<names>
-    {set of name elements}
-</names>
-```
-
-> <small>
->
-> Parents: [keyboard3](#Element_keyboard)
->
-> Children: [name](#Element_name), [_special_](tr35.md#special)
->
-> Occurrence: required, single
->
-> </small>
-
-### <a name="Element_name" href="#Element_name">Element: name</a>
-
-A single name given to the layout.
-
-**Syntax**
-
-```xml
-<name value="..">
-```
-
-> <small>
->
-> Parents: [names](#Element_names)
->
-> Children: _none_
->
-> Occurrence: required, multiple
->
-> </small>
-
-_Attribute:_ `value` (required)
-
-> The name of the layout.
-
-
-**Example**
-
-```xml
-<keyboard3 locale="bg-t-k0-phonetic-trad">
-    …
-    <names>
-        <name value="Bulgarian (Phonetic Traditional)" />
-    </names>
-    …
-</keyboard3>
-```
-
-* * *
-
 ### <a name="Element_settings" href="#Element_settings">Element: settings</a>
 
 An element used to keep track of layout-specific settings by implementations. This element may or may not show up on a layout. These settings reflect the normal practice by the implementation. However, an implementation using the data may customize the behavior.
@@ -589,7 +544,7 @@ An element used to keep track of layout-specific settings by implementations. Th
 **Syntax**
 
 ```xml
-<settings fallback="omit" />
+<settings normalization="disabled" />
 ```
 
 > <small>
@@ -602,29 +557,7 @@ An element used to keep track of layout-specific settings by implementations. Th
 >
 > </small>
 
-_Attribute:_ `fallback="omit"`
-
-> The presence of this attribute means that when a modifier key combination goes unmatched, no output is produced. The default behavior (when this attribute is not present) is to fall back to the base map when the modifier key combination goes unmatched.
-
-If this attribute is present, it must have a value of `omit`.
-
-**Example**
-
-```xml
-<keyboard3 locale="bg">
-    …
-    <settings fallback="omit" />
-    …
-</keyboard3>
-```
-
-Indicates that:
-
-1.  When a modifier combination goes unmatched, do not output anything when a key is pressed.
-2.  If a transform is terminated, output the contents of the buffer.
-3.  During a transform, hide the contents of the buffer as the user is typing.
-
-_Attribute:_ `normalization`
+_Attribute:_ `normalization="disabled"`
 
 > Normalization will not typically be the responsibility of the keyboard author, rather this will be managed by the implementation.
 > The implementation will apply normalization as appropriate when matching transform rules and `<display>` value matching.
@@ -660,18 +593,13 @@ There is only a single `<keys>` element in each layout.
     <key … />
     <key … />
     <key … />
-    <flicks … />
-    <key … />
-    <flicks … />
 </keys>
 ```
-
-`key` and `flicks` elements may be interleaved in any order.
 
 > <small>
 >
 > Parents: [keyboard3](#Element_keyboard)
-> Children: [key](#Element_key), [flicks](#Element_flicks)
+> Children: [key](#Element_key)
 > Occurrence: optional, single
 >
 > </small>
@@ -689,15 +617,14 @@ This element defines a mapping between an abstract key and its output. This elem
 ```xml
 <key
  id="{key id}"
- flicks="{flicks identifier}"
+ flickId="{flick identifier}"
  gap="true"
- longPress="{long press keys}"
- longPressDefault="{default longpress target}"
- multiTap="{the output on subsequent taps}"
+ longPressKeyIds="{long press list id}"
+ longPressDefaultKeyId="{default longpress key}"
+ multiTapKeyIds="{multi tap list id}"
  stretch="true"
- switch="{layer id}"
- to="{the output}"
- transform="no"
+ layerId="{switch layer id}"
+ output="{the output}"
  width="{key width}"
  />
 ```
@@ -713,7 +640,7 @@ This element defines a mapping between an abstract key and its output. This elem
 
 **Note**: The `id` attribute is required.
 
-**Note**: _at least one of_ `switch`, `gap`, or `to` are required.
+**Note**: _at least one of_ `layerId`, `gap`, or `output` are required.
 
 _Attribute:_ `id`
 
@@ -721,9 +648,9 @@ _Attribute:_ `id`
 >
 > In the future, this attribute’s definition is expected to be updated to align with [UAX#31](https://www.unicode.org/reports/tr31/). Please see [CLDR-17043](https://unicode-org.atlassian.net/browse/CLDR-17043) for more details.
 
-_Attribute:_ `flicks="{flick id}"` (optional)
+_Attribute:_ `flickId="{flick id}"` (optional)
 
-> The `flicks` attribute indicates that this key makes use of a [`flicks`](#Element_flicks) set with the specified id.
+> The `flickId` attribute indicates that this key makes use of a [`flick`](#Element_flick) set with the specified id.
 
 _Attribute:_ `gap="true"` (optional)
 
@@ -733,29 +660,60 @@ _Attribute:_ `gap="true"` (optional)
 <key id="mediumgap" gap="true" width="1.5"/>
 ```
 
-_Attribute:_ `longPress="a b c"` (optional)
+_Attribute:_ `longPressKeyIds="{list of key ids}"` (optional)
 
-> The `longPress` attribute contains any characters that can be emitted by "long-pressing" a key, this feature is prominent in mobile devices. The possible sequences of characters that can be emitted are whitespace delimited. Control characters, combining marks and whitespace (which is intended to be a long-press option) in this attribute are escaped using the `\u{...}` notation.
+> A space-separated ordered list of `key` element ids, which keys which can be emitted by "long-pressing" this key. This feature is prominent in mobile devices.
 >
-
-_Attribute:_ `longPressDefault` (optional)
-
-> Indicates which of the `longPress` target characters is the default long-press target, which could be different than the first element. Ignored if not in the `longPress` list. Characters in this attribute can be escaped using the `\u{...}` notation.
-> For example, if the `longPressDefault` is a key whose [display](#Element_displays) value is `{`, an implementation might render the key as follows:
+> In a list of keys specified by `longPressKeyIds`, the key matching `longPressDefaultKeyId` attribute (if present) specifies the default long-press target, which could be different than the first element. It is an error if the `longPressDefaultKeyId` key is not in the `longPressKeyIds` list.
+>
+> Implementations shall ignore any gestures (such as flick, multiTap, longPress) defined on keys in the `longPressKeyIds` list.
+>
+> For example, if the default key is a key whose [display](#Element_displays) value is `{`, an implementation might render the key as follows:
 >
 > ![keycap hint](images/keycapHint.png)
-
-_Attribute:_ `multiTap` (optional)
-
-> A space-delimited list of strings, where each successive element of the list is produced by the corresponding number of quick taps. In the following example, three taps on the key will produce a “c” (first tap produces “a”, two taps produce “bb” etc.).
->>
+>
 > _Example:_
+> - pressing the `o` key will produce `o`
+> - holding down the key will produce a list `ó`, `{` (where `{` is the default and produces a marker)
 >
 > ```xml
-> <key id="a" to="a" multiTap="bb c d">
-> ```
+> <displays>
+>    <displays output="\m{marker}" display="{" />
+> </displays>
 >
-> Control characters, combining marks and whitespace (which is intended to be a multiTap option) in this attribute are escaped using the `\u{...}` notation.
+> <keys>
+>    <key id="o" output="o" longPressKeyIds="o-acute marker" longPressDefaultKeyId="marker">
+>    <key id="o-acute" output="ó"/>
+>    <key id="marker" display="{"/>
+> </key>
+>
+> ```
+
+_Attribute:_ `longPressDefaultKeyId="{key-id}"` (optional)
+
+> Specifies the default key, by id, in a list of long-press keys. See the discussion of `LongPressKeyIds`, above.
+
+_Attribute:_ `multiTapKeyIds` (optional)
+
+> A space-separated ordered list of `key` element ids, which keys, where each successive key in the list is produced by the corresponding number of quick taps.
+> It is an error for a key to reference itself in the `multiTapKeyIds` list.
+>
+> Implementations shall ignore any gestures (such as flick, multiTap, longPress) defined on keys in the `multiTapKeyIds` list.
+>
+> _Example:_
+> - first tap on the key will produce “a”
+> - two taps will produce “bb”
+> - three taps on the key will produce “c”
+> - four taps on the key will produce “d”
+>
+> ```xml
+> <keys>
+>    <key id="a" output="a" multiTapKeyIds="bb c d">
+>    <key id="bb" output="bb" />
+>    <key id="c" output="c" />
+>    <key id="d" output="d" />
+> </key>
+> ```
 
 **Note**: Behavior past the end of the multiTap list is implementation specific.
 
@@ -764,11 +722,11 @@ _Attribute:_ `stretch="true"` (optional)
 > The `stretch` attribute indicates that a touch layout may stretch this key to fill available horizontal space on the row.
 > This is used, for example, on the spacebar. Note that `stretch=` is ignored for hardware layouts.
 
-_Attribute:_ `switch="shift"` (optional)
+_Attribute:_ `layerId="shift"` (optional)
 
-> The `switch` attribute indicates that this key switches to another `layer` with the specified id (such as `<layer id="shift"/>` in this example).
-> Note that a key may have both a `switch=` and a `to=` attribute, indicating that the key outputs prior to switching layers.
-> Also note that `switch=` is ignored for hardware layouts: their shifting is controlled via
+> The `layerId` attribute indicates that this key switches to another `layer` with the specified id (such as `<layer id="shift"/>` in this example).
+> Note that a key may have both a `layerId=` and a `output=` attribute, indicating that the key outputs _prior_ to switching layers.
+> Also note that `layerId=` is ignored for hardware layouts: their shifting is controlled via
 > the modifier keys.
 >
 > This attribute is an NMTOKEN.
@@ -776,77 +734,18 @@ _Attribute:_ `switch="shift"` (optional)
 > In the future, this attribute’s definition is expected to be updated to align with [UAX#31](https://www.unicode.org/reports/tr31/). Please see [CLDR-17043](https://unicode-org.atlassian.net/browse/CLDR-17043) for more details.
 
 
-_Attribute:_ `to`
+_Attribute:_ `output`
 
-> The `to` attribute contains the output sequence of characters that is emitted when pressing this particular key. Control characters, whitespace (other than the regular space character) and combining marks in this attribute are escaped using the `\u{...}` notation. More than one key may output the same output.
+> The `output` attribute contains the sequence of characters that is emitted when pressing this particular key. Control characters, whitespace (other than the regular space character) and combining marks in this attribute are escaped using the `\u{...}` notation. More than one key may output the same output.
 >
-> The `to` attribute may also contain the `\m{…}` syntax to insert a marker. See the definition of [markers](#markers).
-
-_Attribute:_ `transform="no"` (optional)
-
-> The `transform` attribute is used to define a key that does not participate in a transform (until the next keystroke). This attribute value must be `"no"` if the attribute is present.
-> This attribute is useful where it is desired to output where two different keys could output the same characters (with different key or modifier combinations) but only one of them is intended to participate in a transform.
-> When the next keystroke is pressed, the prior output may then combine using other transforms.
->
-> Note that a more flexible way of solving this problem may be to use special markers which would inhibit matching.
->
-> For example, suppose there are the following keys, their output and one transform:
-
-```xml
-<keys>
-    <key id="X" to="^" transform="no"/>
-    <key id="OptX" to="^"/>
-</keys>
-…
-<transforms …>
-    <transform from="^e" to="ê"/>
-</transforms>
-```
-
-* **X** outputs `^` (caret)
-* Option-**X** outputs `^` but is intended to be the first part of a transform.
-* Option-**X** + `e` → `ê`
-
-> Without the `transform="no"` on the base key **X**, it would not be possible to
-> type the sequence `^e` (caret+e) as it would turn into `ê` per the transform.
-> However, since there is `transform="no`" on **X**, if the user types **X** + `e` the sequence remains `^e`.
-
-* **X** + `e` → `^e`
-
-> Using markers, the same results can be obtained without need of `transform="no"` using:
-
-```xml
-<keys>
-    <key id="X" to="^\m{no_transform}"/>
-    <key id="OptX" to="^"/>
-</keys>
-…
-<transforms …>
-    <!-- this wouldn't match the key X output because of the marker -->
-    <transform from="^e" to="ê"/>
-</transforms>
-```
-
-Even better is to use a marker to indicate where transforms are desired:
-
-```xml
-<keys>
-    <key id="X" to="^"/>
-    <key id="OptX" to="^\m{transform}"/>
-</keys>
-…
-<transforms …>
-    <!-- again, this wouldn't match the key X output because of the missing marker -->
-    <transform from="^\m{transform}e" to="ê"/>
-</transforms>
-```
+> The `output` attribute may also contain the `\m{…}` syntax to insert a marker. See the definition of [markers](#markers).
 
 _Attribute:_ `width="1.2"` (optional, default "1.0")
 
 > The `width` attribute indicates that this key has a different width than other keys, by the specified number of key widths.
 
 ```xml
-<key id="wide-a" to="a" width="1.2"/>
+<key id="wide-a" output="a" width="1.2"/>
 <key id="wide-gap" gap="true" width="2.5"/>
 ```
 
@@ -856,23 +755,23 @@ Not all keys need to be listed explicitly.  The following two can be assumed to 
 
 ```xml
 <key id="gap" gap="true" width="1"/>
-<key id="space" to=" " stretch="true" width="1"/>
+<key id="space" output=" " stretch="true" width="1"/>
 ```
 
 In addition, these 62 keys, comprising 10 digit keys, 26 Latin lower-case keys, and 26 Latin upper-case keys, where the `id` is the same as the `to`, are assumed to exist:
 
 ```xml
-<key id="0" to="0"/>
-<key id="1" to="1"/>
-<key id="2" to="2"/>
+<key id="0" output="0"/>
+<key id="1" output="1"/>
+<key id="2" output="2"/>
 …
-<key id="A" to="A"/>
-<key id="B" to="B"/>
-<key id="C" to="C"/>
+<key id="A" output="A"/>
+<key id="B" output="B"/>
+<key id="C" output="C"/>
 …
-<key id="a" to="a"/>
-<key id="b" to="b"/>
-<key id="c" to="c"/>
+<key id="a" output="a"/>
+<key id="b" output="b"/>
+<key id="c" output="c"/>
 …
 ```
 
@@ -892,24 +791,47 @@ Thus, the implied keys behave as if the following import were present.
 
 * * *
 
-#### <a name="Element_flicks" href="#Element_flicks">Elements: flicks, flick</a>
+#### <a name="Element_flicks" href="#Element_flicks">Elements: flicks</a>
 
-The `flicks` element is used to generate results from a "flick" of the finger on a mobile device.
+The `flicks` element is a collection of `flick` elements.
+
+> <small>
+>
+> Parents: [keyboard3](#Element_keyboard3)
+>
+> Children: [flick](#Element_flick), [import](#Element_import), [_special_](tr35.md#special)
+>
+> Occurrence: optional, single
+> </small>
+
+* * *
+
+#### <a name="Element_flick" href="#Element_flick">Elements: flick, flickSegment</a>
+
+The `flick` element is used to generate results from a "flick" of the finger on a mobile device.
 
 **Syntax**
 
 ```xml
-<key id="a" flicks="a-flicks" to="a" />
-<flicks id="a-flicks">
-    {a set of flick elements}
-</flicks>
+<keyboard3>
+    <keys>
+        <key id="a" flicks="a-flicks" output="a" />
+    </keys>
+    <flicks>
+        <flick id="a-flicks">
+            <flickSegment … />
+            <flickSegment … />
+            <flickSegment … />
+        </flick>
+    </flicks>
+</keyboard3>
 ```
 
 > <small>
 >
-> Parents: [keys](#Element_keys)
+> Parents: [flicks](#Element_flicks)
 >
-> Children: [flick](#Element_flick), [_special_](tr35.md#special)
+> Children: [flickSegment](#Element_flickSegment), [_special_](tr35.md#special)
 >
 > Occurrence: optional, multiple
 >
@@ -919,8 +841,8 @@ _Attribute:_ `id` (required)
 
 > The `id` attribute identifies the flicks. It can be any NMTOKEN.
 >
-> The `flicks` do not share a namespace with the `key`s, so it would also be allowed
-> to have `<key id="a" flicks="a"/><flicks id="a"/>`
+> The `flick` elements do not share a namespace with the `key`s, so it would also be allowed
+> to have `<key id="a" flick="a"/>`
 >
 > In the future, this attribute’s definition is expected to be updated to align with [UAX#31](https://www.unicode.org/reports/tr31/). Please see [CLDR-17043](https://unicode-org.atlassian.net/browse/CLDR-17043) for more details.
 
@@ -928,12 +850,12 @@ _Attribute:_ `id` (required)
 **Syntax**
 
 ```xml
-<flick directions="{list of directions}" to="{the output}" />
+<flickSegment directions="{list of directions}" keyId="{the output key id}" />
 ```
 
 > <small>
 >
-> Parents: [flicks](#Element_flicks)
+> Parents: [flick](#Element_flick)
 >
 > Children: _none_
 >
@@ -945,16 +867,26 @@ _Attribute:_ `directions` (required)
 
 > The `directions` attribute value is a space-delimited list of keywords, that describe a path, currently restricted to the cardinal and intercardinal directions `{n e s w ne nw se sw}`.
 
-_Attribute:_ `to` (required)
+_Attribute:_ `keyId` (required)
 
-> The to attribute value is the result of (one or more) flicks.
+> The `keyId` attribute value is the result of (one or more) flicks.
+>
+> Implementations shall ignore any gestures (such as flick, multiTap, longPress) defined on the key specified by `keyId`.
+
 
 **Example**
-where a flick to the Northeast then South produces two code points.
+where a flick to the Northeast then South produces `Å`.
 
 ```xml
-<flicks id="a">
-    <flick directions="ne s" to="\u{ABCD}\u{DCBA}" />
+<keys>
+    <key id="something" flickId="a" output="Something" />
+    <key id="A-ring" output="A-ring" />
+</keys>
+
+<flicks>
+    <flick id="a">
+        <flickSegment directions="ne s" keyId="A-ring" />
+    </flick>
 </flicks>
 ```
 
@@ -978,7 +910,7 @@ If two identical elements are defined, the later element will take precedence, t
 ```
 > <small>
 >
-> Parents: [displays](#Element_displays), [keyboard3](#Element_keyboard), [keys](#Element_keys), [layers](#Element_layers), [names](#Element_names), [reorders](#Element_reorders), [transformGroup](#Element_transformGroup), [transforms](#Element_transforms), [variables](#Element_variables)
+> Parents: [displays](#Element_displays), [keyboard3](#Element_keyboard), [keys](#Element_keys), [flicks](#Element_flicks), [layers](#Element_layers), [names](#Element_names), [reorders](#Element_reorders), [transformGroup](#Element_transformGroup), [transforms](#Element_transforms), [variables](#Element_variables)
 > Children: _none_
 >
 > Occurrence: optional, multiple
@@ -1064,7 +996,7 @@ For combining characters, U+25CC `◌` is used as a base. It is an error to use 
 For example, a key which outputs a combining tilde (U+0303) can be represented as follows:
 
 ```xml
-    <display to="\u{0303}" display="◌̃" />  <!-- \u{25CC} \u{0303}-->
+    <display output="\u{0303}" display="◌̃" />  <!-- \u{25CC} \u{0303}-->
 ```
 
 This way, a key which outputs a combining tilde (U+0303) will be represented as `◌̃` (a tilde on a dotted circle).
@@ -1101,7 +1033,7 @@ The `display` element describes how a character, that has come from a `keys/key`
 **Syntax**
 
 ```xml
-<display to="{the output}" display="{show as}" />
+<display output="{the output}" display="{show as}" />
 ```
 
 > <small>
@@ -1114,23 +1046,26 @@ The `display` element describes how a character, that has come from a `keys/key`
 >
 > </small>
 
-One of the `to` or `id` attributes is required.
+One of the `output` or `id` attributes is required.
 
-_Attribute:_ `to` (optional)
+_Attribute:_ `output` (optional)
 
 > Specifies the character or character sequence from the `keys/key` element that is to have a special display.
 > This attribute may be escaped with `\u` notation, see [Escaping](#Escaping).
-> The `to` attribute may also contain the `\m{…}` syntax to reference a marker. See [Markers](#markers). Implementations may highlight a displayed marker, such as with a lighter text color, or a yellow highlight.
+> The `output` attribute may also contain the `\m{…}` syntax to reference a marker. See [Markers](#markers). Implementations may highlight a displayed marker, such as with a lighter text color, or a yellow highlight.
+> String variables may be substituted. See [String variables](#element-string)
 
 _Attribute:_ `id` (optional)
 
-> Specifies the `key` id. This is useful for keys which do not produce any output (no `to=` value), such as a shift key.
+> Specifies the `key` id. This is useful for keys which do not produce any output (no `output=` value), such as a shift key.
 >
 > This attribute must match `[A-Za-z0-9][A-Za-z0-9-]*`
 
 _Attribute:_ `display` (required)
 
-> Required and specifies the character sequence that should be displayed on the keytop for any key that generates the `@to` sequence or has the `@id`. (It is an error if the value of the `display` attribute is the same as the value of the `to` attribute, this would be an extraneous entry.)
+> Required and specifies the character sequence that should be displayed on the keytop for any key that generates the `@output` sequence or has the `@id`. (It is an error if the value of the `display` attribute is the same as the value of the `output` attribute, this would be an extraneous entry.)
+
+> String variables may be substituted. See [String variables](#element-string)
 
 This attribute may be escaped with `\u` notation, see [Escaping](#Escaping).
 
@@ -1139,19 +1074,19 @@ This attribute may be escaped with `\u` notation, see [Escaping](#Escaping).
 ```xml
 <keyboard3>
     <keys>
-        <key id="a" to="a" longpress="\u{0301} \u{0300}" />
-        <key id="shift" switch="shift" />
+        <key id="grave" output="\u{0300}" /> <!-- combining grave -->
+        <key id="marker" output="\m{acute}" /> <!-- generates a marker-->
+        <key id="numeric" layerId="numeric" /> <!-- changes layers-->
     </keys>
     <displays>
-        <display to="\u{0300}" display="ˋ" /> <!-- \u{02CB} -->
-        <display to="\u{0301}" display="ˊ" /> <!-- \u{02CA} -->
-        <display id="shift"  display="⇪" /> <!-- U+21EA -->
-        <display to="\m{grave}" display="`" /> <!-- Display \m{grave} as ` -->
+        <display output="\u{0300}" display="ˋ" /> <!-- \u{02CB} -->
+        <display keyId="numeric"  display="#" /> <!-- display the layer shift key as # -->
+        <display output="\m{acute}" display="´" /> <!-- Display \m{acute} as ´ -->
     </displays>
 </keyboard3>
 ```
 
-To allow `displays` elements to be shared across keyboards, there is no requirement that `@to` in a `display` element matches any `@to`/`@id` in any `keys/key` element in the keyboard description.
+To allow `displays` elements to be shared across keyboards, there is no requirement that `@output` in a `display` element matches any `@output`/`@id` in any `keys/key` element in the keyboard description.
 
 * * *
 
@@ -1364,7 +1299,7 @@ A `layer` element describes the configuration of keys on a particular layer of a
 **Syntax**
 
 ```xml
-<layer id="layerId" modifier="{Set of Modifier Combinations}">
+<layer id="layerId" modifiers="{Set of Modifier Combinations}">
     ...
 </layer>
 ```
@@ -1386,45 +1321,87 @@ _Attribute_ `id` (required for `touch`)
 >
 > Must match `[A-Za-z0-9][A-Za-z0-9-]*`
 
-_Attribute:_ `modifier` (required for `hardware`)
+_Attribute:_ `modifiers` (required for `hardware`)
 
 > This has two roles. It acts as an identifier for the `layer` element for hardware keyboards (in the absence of the id= element) and also provides the linkage from the hardware modifiers into the correct `layer`.
 >
-> To indicate that no modifiers apply, the reserved name of `none` is used.
-> The following modifier components can be used, separated by spaces.
-> Note that `L` or `R` indicates a left- or right- side modifier only (such as `altL`)
-> whereas `alt` indicates _either_ left or right alt key (that is, `altL` or `altR`). `ctrl` indicates either left or right ctrl key (that is, `ctrlL` or `ctrlR`).
-> `shift` also indicates either shift key. The left and right shift keys are not distinguishable in this specification.
->
-> If there is a layer with a modifier `alt`, there may not be another layer with `altL` or `altR`.  Similarly, if there is a layer with a modifier `ctrl`, there may not be a layer with `ctrlL` or `ctrlR`.
->
-> - `none` (no modifier, may not be combined with others)
-> - `alt`
-> - `altL`
-> - `altR`
-> - `caps`
-> - `ctrl`
-> - `ctrlL`
-> - `ctrlR`
-> - `shift`
->
-> Note that `alt` in this specification is referred to on some platforms as "opt" or "option".
->
-> Left- and right- side modifiers (such as `"altL ctrlR"` or `"altL altR"`) should not be used together in a single `modifier` attribute value.
->
-> For hardware layouts, the use of `@modifier` as an identifier for a layer is sufficient since it is always unique among the set of `layer` elements in a keyboard.
+> For hardware layouts, the use of `@modifiers` as an identifier for a layer is sufficient since it is always unique among the set of `layer` elements in each  `form`.
 >
 > The set of modifiers must match `(none|([A-Za-z0-9]+)( [A-Za-z0-9]+)*)`
 >
-> To share a layer between two modifier sets, the layer data must be duplicated.
+> To indicate that no modifiers apply, the reserved name of `none` is used.
+
+**Syntax**
+
+```xml
+<layer id="base"        modifiers="none">
+    <row keys="a" />
+</layer>
+
+<layer id="upper"       modifiers="shift">
+    <row keys="A" />
+</layer>
+
+<layer id="altgr"       modifiers="altR">
+    <row keys="a-umlaut" />
+</layer>
+
+<layer id="upper-altgr" modifiers="altR shift">
+    <row keys="A-umlaut" />
+</layer>
+```
+
+#### Layer Modifier Components
+
+ The following modifier components can be used, separated by spaces.
+
+ - `none` (no modifier)
+ - `alt`
+ - `altL`
+ - `altR`
+ - `caps`
+ - `ctrl`
+ - `ctrlL`
+ - `ctrlR`
+ - `shift`
+ - `other` (matches if no other layers match)
+
+1. `alt` in this specification is referred to on some platforms as "opt" or "option".
+
+2. `none` and `other` may not be combined with any other components.
+
+#### Modifier Left- and Right- keys
+
+1. `L` or `R` indicates a left- or right- side modifier only (such as `altL`)
+ whereas `alt` indicates _either_ left or right alt key (that is, `altL` or `altR`). `ctrl` indicates either left or right ctrl key (that is, `ctrlL` or `ctrlR`).
+
+2.  If there are any layers (in the same `form=`) with a modifier `alt`, there may not also be another layer with `altL` or `altR`.  Similarly, if there is a layer with a modifier `ctrl`, there may not be a layer with `ctrlL` or `ctrlR`.
+
+3. Left- and right- side modifiers may not be mixed together in a single `modifier` attribute value, so neither `altL ctrlR"` nor `altL altR` are allowed.
+
+4. `shift` indicates either shift key. The left and right shift keys are not distinguishable in this specification.
+
+#### Layer Modifier Matching
+
+Layers are matched exactly based on the modifier keys which are down. For example:
+
+- `none` as a modifier will only match if *all* of the keys `caps`, `alt`, `ctrl` and `shift` are up.
+
+- `alt` as a modifier will only match if either `alt` is down, *and* `caps`, `ctrl`, and `shift` are up.
+
+- `altL ctrl` as a modifier will only match if the left `alt` is down, either `ctrl` is down, *and* `shift` and `caps` are up.
+
+- `other` as a modifier will match if no other layers match.
+
+Multiple modifier sets may be separated by commas.  For example, `none, shift caps` will match either no modifiers *or* shift and caps.  `ctrlL altL, altR` will match either  left-control and left-alt, *or* right-alt.
+
+Keystrokes where there isn’t an explicitly matching layer, and where there is no layer with `other` specified, are ignored.
 
 * * *
 
 ### <a name="Element_row" href="#Element_row">Element: row</a>
 
 A `row` element describes the keys that are present in the row of a keyboard.
-
-
 
 **Syntax**
 
@@ -1519,6 +1496,7 @@ _Attribute:_ `value` (required)
     <string id="cluster_hi" value="हि" /> <!-- a string -->
     <string id="zwnj" value="\u{200C}"/> <!-- single codepoint -->
     <string id="acute" value="\m{acute}"/> <!-- refer to a marker -->
+    <string id="backquote" value="`"/>
     <string id="zwnj_acute" value="${zwnj}${acute}"  /> <!-- Combine two variables -->
     <string id="zwnj_sp_acute" value="${zwnj}\u{0020}${acute}"  /> <!-- Combine two variables -->
 </variables>
@@ -1532,11 +1510,11 @@ These may be then used in multiple contexts:
 <transform from="Y" to="${cluster_hi}" />
 …
 <!-- as part of a key bag  -->
-<key id="hi_key" to="${cluster_hi}" />
-<key id="acute_key" to="${acute}" />
+<key id="hi_key" output="${cluster_hi}" />
+<key id="acute_key" output="${acute}" />
 …
 <!-- Display ´ instead of the non-displayable marker -->
-<display to="${acute}" display="´" />
+<display output="${acute}" display="${backquote}" />
 ```
 
 * * *
@@ -1692,10 +1670,10 @@ The marker ID is any valid `NMTOKEN` (But see [CLDR-17043](https://unicode-org.a
 Consider the following abbreviated example:
 
 ```xml
-    <display to="\m{circ_marker}" display="^" />
+    <display output="\m{circ_marker}" display="^" />
 …
-    <key id="circ_key" to="\m{circ_marker}" />
-    <key id="e" to="e" />
+    <key id="circ_key" output="\m{circ_marker}" />
+    <key id="e" output="e" />
 …
     <transform from="\m{circ_marker}e" to="ê" />
 ```
@@ -1725,6 +1703,58 @@ Consider the following abbreviated example:
 
     - …
     - character `ê`
+
+**Using markers to inhibit other transforms**
+
+Sometimes it is desirable to prevent transforms from having an effect.
+Perhaps two different keys output the same characters, with different key or modifier combinations, but only one of them is intended to participate in a transform.
+
+Consider the following case, where pressing the keys `X`, `e` results in `^e`, which is transformed into `ê`.
+
+```xml
+<keys>
+    <key id="X" output="^"/>
+    <key id="e" output="e" />
+</keys>
+<transforms>
+    <transform from="^e" output="ê"/>
+</transforms>
+```
+
+However, what if the user wanted to produce `^e` without the transform taking effect?
+One strategy would be to use a marker, which won’t be visible in the output, but will inhibit the transform.
+
+```xml
+<keys>
+    <key id="caret" output="^\m{no_transform}"/>
+    <key id="X" output="^" />
+    <key id="e" output="e" />
+</keys>
+…
+<transforms>
+    <!-- this wouldn't match the key caret output because of the marker -->
+    <transform from="^e" output="ê"/>
+</transforms>
+```
+
+Pressing `caret` `e` will result in `^e` (with an invisible _no_transform_ marker — note that any name could be used). The `^e` won’t have the transform applied, at least while the marker’s context remains valid.
+
+Another strategy might be to use a marker to indicate where transforms are desired, instead of where they aren't desired.
+
+```xml
+<keys>
+    <key id="caret" output="^"/>
+    <key id="X" output="^\m{transform}"/>
+    <key id="e" output="e" />
+</keys>
+…
+<transforms …>
+    <!-- Won't match ^e without marker. -->
+    <transform from="^\m{transform}e" output="ê"/>
+</transforms>
+```
+
+In this way, only the `X`, `e` keys will produce `^e` with a _transform_ marker (again, any name could be used) which will cause the transform to be applied. One benefit is that navigating to an existing `^` in a document and adding an `e` will result in `^e`, and this output will not be affected by the transform, because there will be no marker present there (remember that markers are not stored with the document but only recorded in memory temporarily during text input).
 
 **Effect of markers on final text**
 
@@ -2769,7 +2799,7 @@ This attribute specifies a key by means of the key’s `id` attribute.
 
 _Attribute:_ `flick`
 
-This attribute specifies a flick gesture to be performed on the specified key instead of a keypress, such as `e` or `nw se`. This value corresponds to the `directions` attribute of the [`<flick>`](#Element_flicks) element.
+This attribute specifies a flick gesture to be performed on the specified key instead of a keypress, such as `e` or `nw se`. This value corresponds to the `directions` attribute of the [`<flickSegment>`](#Element_flickSegment) element.
 
 _Attribute:_ `longPress`
 
