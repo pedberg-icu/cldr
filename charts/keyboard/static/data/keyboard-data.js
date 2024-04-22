@@ -396,6 +396,467 @@ const _KeyboardData =
     "@_conformsTo": "45"
    }
   },
+  "fr-t-k0-test.xml": {
+   "?xml": {
+    "@_version": "1.0",
+    "@_encoding": "UTF-8"
+   },
+   "keyboard3": {
+    "locales": {
+     "locale": {
+      "@_id": "br"
+     }
+    },
+    "version": {
+     "@_number": "1.0.0"
+    },
+    "info": {
+     "@_name": "French Test AZERTY",
+     "@_author": "Team Keyboard",
+     "@_layout": "AZERTY",
+     "@_indicator": "FR"
+    },
+    "displays": {
+     "display": [
+      {
+       "@_output": "\\u{0300}",
+       "@_display": "${grave}"
+      },
+      {
+       "@_keyId": "symbol",
+       "@_display": "@"
+      },
+      {
+       "@_keyId": "numeric",
+       "@_display": "123"
+      }
+     ],
+     "displayOptions": {
+      "@_baseCharacter": "x"
+     }
+    },
+    "keys": {
+     "import": [
+      {
+       "@_base": "cldr",
+       "@_path": "45/keys-Zyyy-punctuation.xml"
+      },
+      {
+       "@_base": "cldr",
+       "@_path": "45/keys-Zyyy-currency.xml"
+      }
+     ],
+     "key": [
+      {
+       "@_id": "shift",
+       "@_layerId": "shift"
+      },
+      {
+       "@_id": "numeric",
+       "@_layerId": "numeric"
+      },
+      {
+       "@_id": "symbol",
+       "@_layerId": "symbol"
+      },
+      {
+       "@_id": "base",
+       "@_layerId": "base"
+      },
+      {
+       "@_id": "extra",
+       "@_gap": "true"
+      },
+      {
+       "@_id": "enter",
+       "@_gap": "true"
+      },
+      {
+       "@_id": "u-grave",
+       "@_output": "ü"
+      },
+      {
+       "@_id": "e-grave",
+       "@_output": "é"
+      },
+      {
+       "@_id": "e-acute",
+       "@_output": "è"
+      },
+      {
+       "@_id": "c-cedilla",
+       "@_output": "ç"
+      },
+      {
+       "@_id": "a-grave",
+       "@_output": "à"
+      },
+      {
+       "@_id": "a-acute",
+       "@_output": "á"
+      },
+      {
+       "@_id": "a-caret",
+       "@_output": "â"
+      },
+      {
+       "@_id": "a-umlaut",
+       "@_output": "ä"
+      },
+      {
+       "@_id": "a-tilde",
+       "@_output": "ã"
+      },
+      {
+       "@_id": "a-ring",
+       "@_output": "å"
+      },
+      {
+       "@_id": "a-caron",
+       "@_output": "ā"
+      },
+      {
+       "@_id": "A-grave",
+       "@_output": "À"
+      },
+      {
+       "@_id": "A-acute",
+       "@_output": "Á"
+      },
+      {
+       "@_id": "A-caret",
+       "@_output": "Â"
+      },
+      {
+       "@_id": "A-umlaut",
+       "@_output": "Ä"
+      },
+      {
+       "@_id": "A-tilde",
+       "@_output": "Ã"
+      },
+      {
+       "@_id": "A-ring",
+       "@_output": "Å"
+      },
+      {
+       "@_id": "A-caron",
+       "@_output": "Ā"
+      },
+      {
+       "@_id": "bullet",
+       "@_output": "•"
+      },
+      {
+       "@_id": "umlaut",
+       "@_output": "¨"
+      },
+      {
+       "@_id": "super-2",
+       "@_output": "²",
+       "@_multiTapKeyIds": "sub-2 2"
+      },
+      {
+       "@_id": "sub-2",
+       "@_output": "₂"
+      },
+      {
+       "@_id": "a",
+       "@_flickId": "a",
+       "@_output": "a",
+       "@_longPressKeyIds": "a-grave a-caret a-acute a-umlaut a-tilde a-ring a-caron",
+       "@_longPressDefaultKeyId": "a-caret"
+      },
+      {
+       "@_id": "A",
+       "@_flickId": "b",
+       "@_output": "A",
+       "@_longPressKeyIds": "A-grave A-caret A-acute A-umlaut a-tilde A-ring A-caron",
+       "@_longPressDefaultKeyId": "A-caret"
+      }
+     ]
+    },
+    "flicks": {
+     "flick": [
+      {
+       "flickSegment": [
+        {
+         "@_directions": "nw",
+         "@_keyId": "A-grave"
+        },
+        {
+         "@_directions": "nw se",
+         "@_keyId": "A-acute"
+        },
+        {
+         "@_directions": "e",
+         "@_keyId": "A-caron"
+        },
+        {
+         "@_directions": "s",
+         "@_keyId": "numeric"
+        }
+       ],
+       "@_id": "b"
+      },
+      {
+       "flickSegment": [
+        {
+         "@_directions": "nw",
+         "@_keyId": "a-grave"
+        },
+        {
+         "@_directions": "nw se",
+         "@_keyId": "a-acute"
+        },
+        {
+         "@_directions": "e",
+         "@_keyId": "a-caron"
+        }
+       ],
+       "@_id": "a"
+      }
+     ]
+    },
+    "layers": [
+     {
+      "layer": [
+       {
+        "row": [
+         {
+          "@_keys": "super-2 amp e-grave double-quote apos open-paren hyphen e-acute underscore c-cedilla a-acute close-paren equal"
+         },
+         {
+          "@_keys": "a z e r t y u i o p caret dollar"
+         },
+         {
+          "@_keys": "q s d f g h j k l m u-grave asterisk"
+         },
+         {
+          "@_keys": "open-angle w x c v b n comma semi-colon colon bang"
+         },
+         {
+          "@_keys": "space"
+         }
+        ],
+        "@_modifiers": "none"
+       },
+       {
+        "row": [
+         {
+          "@_keys": "1 2 3 4 5 6 7 8 9 0 degree plus"
+         },
+         {
+          "@_keys": "A Z E R T Y U I O P umlaut pound"
+         },
+         {
+          "@_keys": "Q S D F G H J K L M percent micro"
+         },
+         {
+          "@_keys": "close-angle W X C V B N question period slash section"
+         },
+         {
+          "@_keys": "space"
+         }
+        ],
+        "@_modifiers": "shift"
+       }
+      ],
+      "@_formId": "iso"
+     },
+     {
+      "layer": [
+       {
+        "row": [
+         {
+          "@_keys": "a z e r t y u i o p"
+         },
+         {
+          "@_keys": "q s d f g h j k l m"
+         },
+         {
+          "@_keys": "shift gap w x c v b n gap"
+         },
+         {
+          "@_keys": "numeric extra space enter"
+         }
+        ],
+        "@_id": "base"
+       },
+       {
+        "row": [
+         {
+          "@_keys": "A Z E R T Y U I O P"
+         },
+         {
+          "@_keys": "Q S D F G H J K L M"
+         },
+         {
+          "@_keys": "base W X C V B N"
+         },
+         {
+          "@_keys": "numeric extra space enter"
+         }
+        ],
+        "@_id": "shift"
+       },
+       {
+        "row": [
+         {
+          "@_keys": "1 2 3 4 5 6 7 8 9 0"
+         },
+         {
+          "@_keys": "hyphen slash colon semi-colon open-paren close-paren dollar amp at double-quote"
+         },
+         {
+          "@_keys": "symbol period comma question bang double-quote"
+         },
+         {
+          "@_keys": "base extra space enter"
+         }
+        ],
+        "@_id": "numeric"
+       },
+       {
+        "row": [
+         {
+          "@_keys": "open-square close-square open-curly close-curly hash percent caret asterisk plus equal"
+         },
+         {
+          "@_keys": "underscore backslash pipe tilde open-angle close-angle euro pound yen bullet"
+         },
+         {
+          "@_keys": "numeric period comma question bang double-quote"
+         },
+         {
+          "@_keys": "base extra space enter"
+         }
+        ],
+        "@_id": "symbol"
+       }
+      ],
+      "@_formId": "touch",
+      "@_minDeviceWidth": "150"
+     }
+    ],
+    "variables": {
+     "string": [
+      {
+       "@_id": "grave",
+       "@_value": "`"
+      },
+      {
+       "@_id": "caret",
+       "@_value": "^"
+      },
+      {
+       "@_id": "umlaut",
+       "@_value": "¨"
+      },
+      {
+       "@_id": "tilde",
+       "@_value": "~"
+      }
+     ],
+     "set": [
+      {
+       "@_id": "vowel",
+       "@_value": "a e i o u  A E I O U"
+      },
+      {
+       "@_id": "graveVowel",
+       "@_value": "à è ì ò ù  À È Ì Ò Ù"
+      },
+      {
+       "@_id": "caretVowel",
+       "@_value": "â ê î ô û  Â Ê Î Ô Û"
+      },
+      {
+       "@_id": "umlautVowel",
+       "@_value": "ä ë ï ö ü  Ä Ë Ï Ö Ü"
+      },
+      {
+       "@_id": "spacing_accent",
+       "@_value": "${grave} ${caret} ${umlaut} ${tilde}"
+      }
+     ]
+    },
+    "transforms": [
+     {
+      "transformGroup": [
+       {
+        "transform": [
+         {
+          "@_from": "${grave}($[vowel])",
+          "@_to": "$[1:graveVowel]"
+         },
+         {
+          "@_from": "${caret}($[vowel])",
+          "@_to": "$[1:caretVowel]"
+         },
+         {
+          "@_from": "${umlaut}($[vowel])",
+          "@_to": "$[1:umlautVowel]"
+         },
+         {
+          "@_from": "${umlaut}y",
+          "@_to": "ÿ"
+         },
+         {
+          "@_from": "${tilde}a",
+          "@_to": "ã"
+         },
+         {
+          "@_from": "${tilde}A",
+          "@_to": "Ã"
+         },
+         {
+          "@_from": "${tilde}n",
+          "@_to": "ñ"
+         },
+         {
+          "@_from": "${tilde}N",
+          "@_to": "Ñ"
+         },
+         {
+          "@_from": "${tilde}o",
+          "@_to": "õ"
+         },
+         {
+          "@_from": "${tilde}O",
+          "@_to": "Õ"
+         },
+         {
+          "@_from": "($[spacing_accent])",
+          "@_to": "$1"
+         }
+        ]
+       },
+       {
+        "reorder": [
+         {
+          "@_from": "\\u{1A60}",
+          "@_order": "127"
+         },
+         {
+          "@_from": "\\u{1A6B}",
+          "@_order": "42"
+         },
+         {
+          "@_from": "[\\u{1A75}-\\u{1A79}]",
+          "@_order": "55"
+         }
+        ]
+       }
+      ],
+      "@_type": "simple"
+     }
+    ],
+    "@_xmlns": "https://schemas.unicode.org/cldr/45/keyboard3",
+    "@_locale": "fr-t-k0-test",
+    "@_conformsTo": "45"
+   }
+  },
   "bn.xml": {
    "?xml": {
     "@_version": "1.0",
@@ -894,44 +1355,18 @@ const _KeyboardData =
     "@_conformsTo": "45"
    }
   },
-  "fr-t-k0-azerty.xml": {
+  "ja-Hira-t-k0-flicks.xml": {
    "?xml": {
     "@_version": "1.0",
     "@_encoding": "UTF-8"
    },
    "keyboard3": {
-    "locales": {
-     "locale": {
-      "@_id": "br"
-     }
-    },
     "version": {
      "@_number": "1.0.0"
     },
     "info": {
-     "@_name": "French Test AZERTY",
      "@_author": "Team Keyboard",
-     "@_layout": "AZERTY",
-     "@_indicator": "FR"
-    },
-    "displays": {
-     "display": [
-      {
-       "@_output": "\\u{0300}",
-       "@_display": "${grave}"
-      },
-      {
-       "@_keyId": "symbol",
-       "@_display": "@"
-      },
-      {
-       "@_keyId": "numeric",
-       "@_display": "123"
-      }
-     ],
-     "displayOptions": {
-      "@_baseCharacter": "x"
-     }
+     "@_name": "Japanese Hiragana"
     },
     "keys": {
      "import": [
@@ -946,131 +1381,231 @@ const _KeyboardData =
      ],
      "key": [
       {
-       "@_id": "shift",
-       "@_layerId": "shift"
+       "@_id": "h-a",
+       "@_output": "あ",
+       "@_flickId": "h-a"
       },
       {
-       "@_id": "numeric",
-       "@_layerId": "numeric"
+       "@_id": "h-i",
+       "@_output": "い"
       },
       {
-       "@_id": "symbol",
-       "@_layerId": "symbol"
+       "@_id": "h-u",
+       "@_output": "う"
+      },
+      {
+       "@_id": "h-e",
+       "@_output": "え"
+      },
+      {
+       "@_id": "h-o",
+       "@_output": "お"
+      },
+      {
+       "@_id": "h-ka",
+       "@_output": "か",
+       "@_flickId": "h-ka"
+      },
+      {
+       "@_id": "h-ki",
+       "@_output": "き"
+      },
+      {
+       "@_id": "h-ku",
+       "@_output": "く"
+      },
+      {
+       "@_id": "h-ke",
+       "@_output": "け"
+      },
+      {
+       "@_id": "h-ko",
+       "@_output": "こ"
+      },
+      {
+       "@_id": "h-sa",
+       "@_output": "さ",
+       "@_flickId": "h-sa"
+      },
+      {
+       "@_id": "h-si",
+       "@_output": "し"
+      },
+      {
+       "@_id": "h-su",
+       "@_output": "す"
+      },
+      {
+       "@_id": "h-se",
+       "@_output": "せ"
+      },
+      {
+       "@_id": "h-so",
+       "@_output": "そ"
+      },
+      {
+       "@_id": "h-ta",
+       "@_output": "た",
+       "@_flickId": "h-ta"
+      },
+      {
+       "@_id": "h-ti",
+       "@_output": "ち"
+      },
+      {
+       "@_id": "h-tu",
+       "@_output": "つ"
+      },
+      {
+       "@_id": "h-te",
+       "@_output": "て"
+      },
+      {
+       "@_id": "h-to",
+       "@_output": "と"
+      },
+      {
+       "@_id": "h-na",
+       "@_output": "な",
+       "@_flickId": "h-na"
+      },
+      {
+       "@_id": "h-ni",
+       "@_output": "に"
+      },
+      {
+       "@_id": "h-nu",
+       "@_output": "ぬ"
+      },
+      {
+       "@_id": "h-ne",
+       "@_output": "ね"
+      },
+      {
+       "@_id": "h-no",
+       "@_output": "の"
+      },
+      {
+       "@_id": "h-ha",
+       "@_output": "は",
+       "@_flickId": "h-ha"
+      },
+      {
+       "@_id": "h-hi",
+       "@_output": "ひ"
+      },
+      {
+       "@_id": "h-hu",
+       "@_output": "ふ"
+      },
+      {
+       "@_id": "h-he",
+       "@_output": "へ"
+      },
+      {
+       "@_id": "h-ho",
+       "@_output": "ほ"
+      },
+      {
+       "@_id": "h-ma",
+       "@_output": "ま",
+       "@_flickId": "h-ma"
+      },
+      {
+       "@_id": "h-mi",
+       "@_output": "み"
+      },
+      {
+       "@_id": "h-mu",
+       "@_output": "む"
+      },
+      {
+       "@_id": "h-me",
+       "@_output": "め"
+      },
+      {
+       "@_id": "h-mo",
+       "@_output": "も"
+      },
+      {
+       "@_id": "h-ya",
+       "@_output": "や",
+       "@_flickId": "h-ya"
+      },
+      {
+       "@_id": "h-yu",
+       "@_output": "ゆ"
+      },
+      {
+       "@_id": "h-yo",
+       "@_output": "よ"
+      },
+      {
+       "@_id": "h-ra",
+       "@_output": "ら",
+       "@_flickId": "h-ra"
+      },
+      {
+       "@_id": "h-ri",
+       "@_output": "り"
+      },
+      {
+       "@_id": "h-ru",
+       "@_output": "る"
+      },
+      {
+       "@_id": "h-re",
+       "@_output": "れ"
+      },
+      {
+       "@_id": "h-ro",
+       "@_output": "ろ"
+      },
+      {
+       "@_id": "h-wa",
+       "@_output": "わ",
+       "@_flickId": "h-wa"
+      },
+      {
+       "@_id": "h-wo",
+       "@_output": "を"
+      },
+      {
+       "@_id": "h-n",
+       "@_output": "ん"
+      },
+      {
+       "@_id": "h-period",
+       "@_output": "。",
+       "@_flickId": "marks"
+      },
+      {
+       "@_id": "num",
+       "@_layerId": "num"
+      },
+      {
+       "@_id": "sym",
+       "@_layerId": "sym"
       },
       {
        "@_id": "base",
        "@_layerId": "base"
       },
       {
-       "@_id": "extra",
-       "@_gap": "true"
+       "@_id": "voiced",
+       "@_output": "\\u{3099}"
       },
       {
-       "@_id": "enter",
-       "@_gap": "true"
+       "@_id": "semivoiced",
+       "@_output": "\\u{309A}"
       },
       {
-       "@_id": "u-grave",
-       "@_output": "ü"
+       "@_id": "smalltsu",
+       "@_output": "っ"
       },
       {
-       "@_id": "e-grave",
-       "@_output": "é"
-      },
-      {
-       "@_id": "e-acute",
-       "@_output": "è"
-      },
-      {
-       "@_id": "c-cedilla",
-       "@_output": "ç"
-      },
-      {
-       "@_id": "a-grave",
-       "@_output": "à"
-      },
-      {
-       "@_id": "a-acute",
-       "@_output": "á"
-      },
-      {
-       "@_id": "a-caret",
-       "@_output": "â"
-      },
-      {
-       "@_id": "a-umlaut",
-       "@_output": "ä"
-      },
-      {
-       "@_id": "a-tilde",
-       "@_output": "ã"
-      },
-      {
-       "@_id": "a-ring",
-       "@_output": "å"
-      },
-      {
-       "@_id": "a-caron",
-       "@_output": "ā"
-      },
-      {
-       "@_id": "A-grave",
-       "@_output": "À"
-      },
-      {
-       "@_id": "A-acute",
-       "@_output": "Á"
-      },
-      {
-       "@_id": "A-caret",
-       "@_output": "Â"
-      },
-      {
-       "@_id": "A-umlaut",
-       "@_output": "Ä"
-      },
-      {
-       "@_id": "A-tilde",
-       "@_output": "Ã"
-      },
-      {
-       "@_id": "A-ring",
-       "@_output": "Å"
-      },
-      {
-       "@_id": "A-caron",
-       "@_output": "Ā"
-      },
-      {
-       "@_id": "bullet",
-       "@_output": "•"
-      },
-      {
-       "@_id": "umlaut",
-       "@_output": "¨"
-      },
-      {
-       "@_id": "super-2",
-       "@_output": "²",
-       "@_multiTapKeyIds": "sub-2 2"
-      },
-      {
-       "@_id": "sub-2",
-       "@_output": "₂"
-      },
-      {
-       "@_id": "a",
-       "@_flickId": "a",
-       "@_output": "a",
-       "@_longPressKeyIds": "a-grave a-caret a-acute a-umlaut a-tilde a-ring a-caron",
-       "@_longPressDefaultKeyId": "a-caret"
-      },
-      {
-       "@_id": "A",
-       "@_flickId": "b",
-       "@_output": "A",
-       "@_longPressKeyIds": "A-grave A-caret A-acute A-umlaut a-tilde A-ring A-caron",
-       "@_longPressDefaultKeyId": "A-caret"
+       "@_id": "smallya",
+       "@_output": "ゃ"
       }
      ]
     },
@@ -1079,279 +1614,331 @@ const _KeyboardData =
       {
        "flickSegment": [
         {
-         "@_directions": "nw",
-         "@_keyId": "A-grave"
+         "@_directions": "w",
+         "@_keyId": "voiced"
         },
         {
-         "@_directions": "nw se",
-         "@_keyId": "A-acute"
+         "@_directions": "n",
+         "@_keyId": "h-period"
         },
         {
          "@_directions": "e",
-         "@_keyId": "A-caron"
+         "@_keyId": "semivoiced"
         },
         {
          "@_directions": "s",
-         "@_keyId": "numeric"
+         "@_keyId": "period"
         }
        ],
-       "@_id": "b"
+       "@_id": "marks"
       },
       {
        "flickSegment": [
         {
-         "@_directions": "nw",
-         "@_keyId": "a-grave"
+         "@_directions": "n",
+         "@_keyId": "h-a"
         },
         {
-         "@_directions": "nw se",
-         "@_keyId": "a-acute"
+         "@_directions": "w",
+         "@_keyId": "h-i"
         },
         {
          "@_directions": "e",
-         "@_keyId": "a-caron"
+         "@_keyId": "h-u"
+        },
+        {
+         "@_directions": "sw",
+         "@_keyId": "h-e"
+        },
+        {
+         "@_directions": "s",
+         "@_keyId": "h-o"
         }
        ],
-       "@_id": "a"
+       "@_id": "h-a"
+      },
+      {
+       "flickSegment": [
+        {
+         "@_directions": "n",
+         "@_keyId": "h-ka"
+        },
+        {
+         "@_directions": "w",
+         "@_keyId": "h-ki"
+        },
+        {
+         "@_directions": "e",
+         "@_keyId": "h-ku"
+        },
+        {
+         "@_directions": "sw",
+         "@_keyId": "h-ke"
+        },
+        {
+         "@_directions": "s",
+         "@_keyId": "h-ko"
+        }
+       ],
+       "@_id": "h-ka"
+      },
+      {
+       "flickSegment": [
+        {
+         "@_directions": "n",
+         "@_keyId": "h-sa"
+        },
+        {
+         "@_directions": "w",
+         "@_keyId": "h-si"
+        },
+        {
+         "@_directions": "e",
+         "@_keyId": "h-su"
+        },
+        {
+         "@_directions": "sw",
+         "@_keyId": "h-se"
+        },
+        {
+         "@_directions": "s",
+         "@_keyId": "h-so"
+        }
+       ],
+       "@_id": "h-sa"
+      },
+      {
+       "flickSegment": [
+        {
+         "@_directions": "n",
+         "@_keyId": "h-ta"
+        },
+        {
+         "@_directions": "w",
+         "@_keyId": "h-ti"
+        },
+        {
+         "@_directions": "e",
+         "@_keyId": "h-tu"
+        },
+        {
+         "@_directions": "se",
+         "@_keyId": "smalltsu"
+        },
+        {
+         "@_directions": "sw",
+         "@_keyId": "h-te"
+        },
+        {
+         "@_directions": "s",
+         "@_keyId": "h-to"
+        }
+       ],
+       "@_id": "h-ta"
+      },
+      {
+       "flickSegment": [
+        {
+         "@_directions": "n",
+         "@_keyId": "h-na"
+        },
+        {
+         "@_directions": "w",
+         "@_keyId": "h-ni"
+        },
+        {
+         "@_directions": "e",
+         "@_keyId": "h-nu"
+        },
+        {
+         "@_directions": "sw",
+         "@_keyId": "h-ne"
+        },
+        {
+         "@_directions": "s",
+         "@_keyId": "h-no"
+        }
+       ],
+       "@_id": "h-na"
+      },
+      {
+       "flickSegment": [
+        {
+         "@_directions": "n",
+         "@_keyId": "h-ha"
+        },
+        {
+         "@_directions": "w",
+         "@_keyId": "h-hi"
+        },
+        {
+         "@_directions": "e",
+         "@_keyId": "h-hu"
+        },
+        {
+         "@_directions": "sw",
+         "@_keyId": "h-he"
+        },
+        {
+         "@_directions": "s",
+         "@_keyId": "h-ho"
+        }
+       ],
+       "@_id": "h-ha"
+      },
+      {
+       "flickSegment": [
+        {
+         "@_directions": "n",
+         "@_keyId": "h-ma"
+        },
+        {
+         "@_directions": "w",
+         "@_keyId": "h-mi"
+        },
+        {
+         "@_directions": "e",
+         "@_keyId": "h-mu"
+        },
+        {
+         "@_directions": "sw",
+         "@_keyId": "h-me"
+        },
+        {
+         "@_directions": "s",
+         "@_keyId": "h-mo"
+        }
+       ],
+       "@_id": "h-ma"
+      },
+      {
+       "flickSegment": [
+        {
+         "@_directions": "n",
+         "@_keyId": "h-ya"
+        },
+        {
+         "@_directions": "ne",
+         "@_keyId": "smallya"
+        },
+        {
+         "@_directions": "e",
+         "@_keyId": "h-yu"
+        },
+        {
+         "@_directions": "s",
+         "@_keyId": "h-yo"
+        }
+       ],
+       "@_id": "h-ya"
+      },
+      {
+       "flickSegment": [
+        {
+         "@_directions": "n",
+         "@_keyId": "h-ra"
+        },
+        {
+         "@_directions": "w",
+         "@_keyId": "h-ri"
+        },
+        {
+         "@_directions": "e",
+         "@_keyId": "h-ru"
+        },
+        {
+         "@_directions": "sw",
+         "@_keyId": "h-re"
+        },
+        {
+         "@_directions": "s",
+         "@_keyId": "h-ro"
+        }
+       ],
+       "@_id": "h-ra"
+      },
+      {
+       "flickSegment": [
+        {
+         "@_directions": "n",
+         "@_keyId": "h-wa"
+        },
+        {
+         "@_directions": "s",
+         "@_keyId": "h-wo"
+        }
+       ],
+       "@_id": "h-wa"
       }
      ]
     },
-    "layers": [
-     {
-      "layer": [
-       {
-        "row": [
-         {
-          "@_keys": "super-2 amp e-grave double-quote apos open-paren hyphen e-acute underscore c-cedilla a-acute close-paren equal"
-         },
-         {
-          "@_keys": "a z e r t y u i o p caret dollar"
-         },
-         {
-          "@_keys": "q s d f g h j k l m u-grave asterisk"
-         },
-         {
-          "@_keys": "open-angle w x c v b n comma semi-colon colon bang"
-         },
-         {
-          "@_keys": "space"
-         }
-        ],
-        "@_modifiers": "none"
-       },
-       {
-        "row": [
-         {
-          "@_keys": "1 2 3 4 5 6 7 8 9 0 degree plus"
-         },
-         {
-          "@_keys": "A Z E R T Y U I O P umlaut pound"
-         },
-         {
-          "@_keys": "Q S D F G H J K L M percent micro"
-         },
-         {
-          "@_keys": "close-angle W X C V B N question period slash section"
-         },
-         {
-          "@_keys": "space"
-         }
-        ],
-        "@_modifiers": "shift"
-       }
-      ],
-      "@_formId": "iso"
-     },
-     {
-      "layer": [
-       {
-        "row": [
-         {
-          "@_keys": "a z e r t y u i o p"
-         },
-         {
-          "@_keys": "q s d f g h j k l m"
-         },
-         {
-          "@_keys": "shift gap w x c v b n gap"
-         },
-         {
-          "@_keys": "numeric extra space enter"
-         }
-        ],
-        "@_id": "base"
-       },
-       {
-        "row": [
-         {
-          "@_keys": "A Z E R T Y U I O P"
-         },
-         {
-          "@_keys": "Q S D F G H J K L M"
-         },
-         {
-          "@_keys": "base W X C V B N"
-         },
-         {
-          "@_keys": "numeric extra space enter"
-         }
-        ],
-        "@_id": "shift"
-       },
-       {
-        "row": [
-         {
-          "@_keys": "1 2 3 4 5 6 7 8 9 0"
-         },
-         {
-          "@_keys": "hyphen slash colon semi-colon open-paren close-paren dollar amp at double-quote"
-         },
-         {
-          "@_keys": "symbol period comma question bang double-quote"
-         },
-         {
-          "@_keys": "base extra space enter"
-         }
-        ],
-        "@_id": "numeric"
-       },
-       {
-        "row": [
-         {
-          "@_keys": "open-square close-square open-curly close-curly hash percent caret asterisk plus equal"
-         },
-         {
-          "@_keys": "underscore backslash pipe tilde open-angle close-angle euro pound yen bullet"
-         },
-         {
-          "@_keys": "numeric period comma question bang double-quote"
-         },
-         {
-          "@_keys": "base extra space enter"
-         }
-        ],
-        "@_id": "symbol"
-       }
-      ],
-      "@_formId": "touch",
-      "@_minDeviceWidth": "150"
-     }
-    ],
-    "variables": {
-     "string": [
+    "layers": {
+     "layer": [
       {
-       "@_id": "grave",
-       "@_value": "`"
+       "row": [
+        {
+         "@_keys": "h-a h-ka h-sa"
+        },
+        {
+         "@_keys": "h-ta h-na h-ha"
+        },
+        {
+         "@_keys": "h-ma h-ya h-ra"
+        },
+        {
+         "@_keys": "sym h-wa h-period num"
+        },
+        {
+         "@_keys": "space"
+        }
+       ],
+       "@_id": "base"
       },
       {
-       "@_id": "caret",
-       "@_value": "^"
+       "row": [
+        {
+         "@_keys": "bang double-quote hash"
+        },
+        {
+         "@_keys": "dollar percent amp"
+        },
+        {
+         "@_keys": "apos open-paren close-paren"
+        },
+        {
+         "@_keys": "equal tilde pipe"
+        },
+        {
+         "@_keys": "base"
+        }
+       ],
+       "@_id": "sym"
       },
       {
-       "@_id": "umlaut",
-       "@_value": "¨"
-      },
-      {
-       "@_id": "tilde",
-       "@_value": "~"
+       "row": [
+        {
+         "@_keys": "1 2 3"
+        },
+        {
+         "@_keys": "4 5 6"
+        },
+        {
+         "@_keys": "7 8 9"
+        },
+        {
+         "@_keys": "comma 0 period"
+        },
+        {
+         "@_keys": "base"
+        }
+       ],
+       "@_id": "num"
       }
      ],
-     "set": [
-      {
-       "@_id": "vowel",
-       "@_value": "a e i o u  A E I O U"
-      },
-      {
-       "@_id": "graveVowel",
-       "@_value": "à è ì ò ù  À È Ì Ò Ù"
-      },
-      {
-       "@_id": "caretVowel",
-       "@_value": "â ê î ô û  Â Ê Î Ô Û"
-      },
-      {
-       "@_id": "umlautVowel",
-       "@_value": "ä ë ï ö ü  Ä Ë Ï Ö Ü"
-      },
-      {
-       "@_id": "spacing_accent",
-       "@_value": "${grave} ${caret} ${umlaut} ${tilde}"
-      }
-     ]
+     "@_formId": "touch"
     },
-    "transforms": [
-     {
-      "transformGroup": [
-       {
-        "transform": [
-         {
-          "@_from": "${grave}($[vowel])",
-          "@_to": "$[1:graveVowel]"
-         },
-         {
-          "@_from": "${caret}($[vowel])",
-          "@_to": "$[1:caretVowel]"
-         },
-         {
-          "@_from": "${umlaut}($[vowel])",
-          "@_to": "$[1:umlautVowel]"
-         },
-         {
-          "@_from": "${umlaut}y",
-          "@_to": "ÿ"
-         },
-         {
-          "@_from": "${tilde}a",
-          "@_to": "ã"
-         },
-         {
-          "@_from": "${tilde}A",
-          "@_to": "Ã"
-         },
-         {
-          "@_from": "${tilde}n",
-          "@_to": "ñ"
-         },
-         {
-          "@_from": "${tilde}N",
-          "@_to": "Ñ"
-         },
-         {
-          "@_from": "${tilde}o",
-          "@_to": "õ"
-         },
-         {
-          "@_from": "${tilde}O",
-          "@_to": "Õ"
-         },
-         {
-          "@_from": "($[spacing_accent])",
-          "@_to": "$1"
-         }
-        ]
-       },
-       {
-        "reorder": [
-         {
-          "@_from": "\\u{1A60}",
-          "@_order": "127"
-         },
-         {
-          "@_from": "\\u{1A6B}",
-          "@_order": "42"
-         },
-         {
-          "@_from": "[\\u{1A75}-\\u{1A79}]",
-          "@_order": "55"
-         }
-        ]
-       }
-      ],
-      "@_type": "simple"
-     }
-    ],
     "@_xmlns": "https://schemas.unicode.org/cldr/45/keyboard3",
-    "@_locale": "fr-t-k0-azerty",
+    "@_locale": "ja-Hira-t-k0-flicks",
     "@_conformsTo": "45"
    }
   },
@@ -1752,6 +2339,750 @@ const _KeyboardData =
     "@_xmlns": "https://schemas.unicode.org/cldr/45/keyboard3",
     "@_locale": "mt-t-k0-47key",
     "@_conformsTo": "45"
+   }
+  },
+  "fr.xml": {
+   "?xml": {
+    "@_version": "1.0",
+    "@_encoding": "UTF-8"
+   },
+   "keyboard3": {
+    "version": {
+     "@_number": "1.0.0"
+    },
+    "info": {
+     "@_author": "Team Keyboard",
+     "@_name": "Français normalisé (AZERTY)",
+     "@_layout": "AZERTY",
+     "@_indicator": "FR"
+    },
+    "displays": {
+     "display": [
+      {
+       "@_output": "\\u0300",
+       "@_display": "${grave}"
+      },
+      {
+       "@_output": "\\m{acute}",
+       "@_display": "´"
+      },
+      {
+       "@_output": "\\m{grave}",
+       "@_display": "`"
+      },
+      {
+       "@_output": "\\m{umlaut}",
+       "@_display": "¨"
+      },
+      {
+       "@_output": "\\m{caret}",
+       "@_display": "^"
+      },
+      {
+       "@_output": "\\m{tilde}",
+       "@_display": "~"
+      },
+      {
+       "@_output": "\\m{invbreve}",
+       "@_display": "\\u{20}\\u{0311}"
+      },
+      {
+       "@_keyId": "mark-currency",
+       "@_display": "\\u{00A4}"
+      },
+      {
+       "@_keyId": "mark-greek",
+       "@_display": "\\u{B5}"
+      },
+      {
+       "@_keyId": "mark-euro",
+       "@_display": "Eu"
+      }
+     ]
+    },
+    "keys": {
+     "import": [
+      {
+       "@_base": "cldr",
+       "@_path": "45/keys-Zyyy-punctuation.xml"
+      },
+      {
+       "@_base": "cldr",
+       "@_path": "45/keys-Zyyy-currency.xml"
+      }
+     ],
+     "key": [
+      {
+       "@_id": "mark-acute",
+       "@_output": "\\m{acute}"
+      },
+      {
+       "@_id": "mark-breve",
+       "@_output": "\\m{breve}"
+      },
+      {
+       "@_id": "mark-caret",
+       "@_output": "\\m{caret}"
+      },
+      {
+       "@_id": "mark-caron",
+       "@_output": "\\m{caron}"
+      },
+      {
+       "@_id": "mark-cedilla",
+       "@_output": "\\m{cedilla}"
+      },
+      {
+       "@_id": "mark-invbreve",
+       "@_output": "\\m{invbreve}"
+      },
+      {
+       "@_id": "mark-comma",
+       "@_output": "\\m{comma}"
+      },
+      {
+       "@_id": "mark-currency",
+       "@_output": "\\m{currency}"
+      },
+      {
+       "@_id": "mark-dotabove",
+       "@_output": "\\m{dotabove}"
+      },
+      {
+       "@_id": "mark-dotbelow",
+       "@_output": "\\m{dotbelow}"
+      },
+      {
+       "@_id": "mark-doubleacute",
+       "@_output": "\\m{doubleacute}"
+      },
+      {
+       "@_id": "mark-doublegrave",
+       "@_output": "\\m{doublegrave}"
+      },
+      {
+       "@_id": "mark-euro",
+       "@_output": "\\m{euro}"
+      },
+      {
+       "@_id": "mark-grave",
+       "@_output": "\\m{grave}"
+      },
+      {
+       "@_id": "mark-macron",
+       "@_output": "\\m{macron}"
+      },
+      {
+       "@_id": "mark-ogonek",
+       "@_output": "\\m{ogonek}"
+      },
+      {
+       "@_id": "mark-ring",
+       "@_output": "\\m{ring}"
+      },
+      {
+       "@_id": "mark-greek",
+       "@_output": "\\m{greek}"
+      },
+      {
+       "@_id": "mark-solidus",
+       "@_output": "\\m{solidus}"
+      },
+      {
+       "@_id": "mark-stroke",
+       "@_output": "\\m{stroke}"
+      },
+      {
+       "@_id": "mark-submacron",
+       "@_output": "\\m{submacron}"
+      },
+      {
+       "@_id": "mark-tilde",
+       "@_output": "\\m{tilde}"
+      },
+      {
+       "@_id": "mark-umlaut",
+       "@_output": "\\m{umlaut}"
+      },
+      {
+       "@_id": "nbsp",
+       "@_output": "\\u{A0}"
+      },
+      {
+       "@_id": "nnbsp",
+       "@_output": "\\u{202F}"
+      },
+      {
+       "@_id": "e-grave",
+       "@_output": "è"
+      },
+      {
+       "@_id": "e-acute",
+       "@_output": "é"
+      },
+      {
+       "@_id": "c-cedilla",
+       "@_output": "ç"
+      },
+      {
+       "@_id": "a-acute",
+       "@_output": "á"
+      },
+      {
+       "@_id": "a-grave",
+       "@_output": "à"
+      },
+      {
+       "@_id": "e-caret",
+       "@_output": "ê"
+      },
+      {
+       "@_id": "bullet",
+       "@_output": "•"
+      },
+      {
+       "@_id": "umlaut",
+       "@_output": "¨"
+      },
+      {
+       "@_id": "sub-2",
+       "@_output": "₂"
+      },
+      {
+       "@_id": "super-2",
+       "@_output": "²",
+       "@_longPressKeyIds": "sub-2"
+      },
+      {
+       "@_id": "en-dash",
+       "@_output": "–"
+      },
+      {
+       "@_id": "plus-minus",
+       "@_output": "±"
+      },
+      {
+       "@_id": "vulgar-half",
+       "@_output": "½"
+      },
+      {
+       "@_id": "vulgar-quarter",
+       "@_output": "¼"
+      },
+      {
+       "@_id": "ellipsis",
+       "@_output": "…"
+      },
+      {
+       "@_id": "open-apos",
+       "@_output": "‘"
+      },
+      {
+       "@_id": "close-apos",
+       "@_output": "’"
+      },
+      {
+       "@_id": "open-g",
+       "@_output": "«"
+      },
+      {
+       "@_id": "close-g",
+       "@_output": "»"
+      },
+      {
+       "@_id": "theta",
+       "@_output": "θ"
+      },
+      {
+       "@_id": "Theta",
+       "@_output": "ϴ"
+      },
+      {
+       "@_id": "tm",
+       "@_output": "™"
+      },
+      {
+       "@_id": "open-double",
+       "@_output": "“"
+      },
+      {
+       "@_id": "close-double",
+       "@_output": "”"
+      },
+      {
+       "@_id": "oe",
+       "@_output": "œ"
+      },
+      {
+       "@_id": "Oe",
+       "@_output": "Œ"
+      },
+      {
+       "@_id": "registered",
+       "@_output": "®"
+      },
+      {
+       "@_id": "minus-sign",
+       "@_output": "−"
+      },
+      {
+       "@_id": "ss",
+       "@_output": "ß"
+      },
+      {
+       "@_id": "infinity",
+       "@_output": "∞"
+      },
+      {
+       "@_id": "division",
+       "@_output": "÷"
+      },
+      {
+       "@_id": "less-equal",
+       "@_output": "⩽"
+      },
+      {
+       "@_id": "greater-equal",
+       "@_output": "⩾"
+      },
+      {
+       "@_id": "copy",
+       "@_output": "©"
+      },
+      {
+       "@_id": "inverse-question",
+       "@_output": "¿"
+      },
+      {
+       "@_id": "inverse-bang",
+       "@_output": "¡"
+      },
+      {
+       "@_id": "middle-dot",
+       "@_output": "•"
+      },
+      {
+       "@_id": "A-grave",
+       "@_output": "À"
+      },
+      {
+       "@_id": "E-acute",
+       "@_output": "É"
+      },
+      {
+       "@_id": "E-caret",
+       "@_output": "Ê"
+      },
+      {
+       "@_id": "em-dash",
+       "@_output": "—"
+      },
+      {
+       "@_id": "open-single",
+       "@_output": "’"
+      },
+      {
+       "@_id": "close-single",
+       "@_output": "’"
+      },
+      {
+       "@_id": "u-grave",
+       "@_output": "Ù"
+      },
+      {
+       "@_id": "radix",
+       "@_output": "√"
+      },
+      {
+       "@_id": "C-cedilla",
+       "@_output": "Ç"
+      },
+      {
+       "@_id": "not-equal",
+       "@_output": "≠"
+      },
+      {
+       "@_id": "open-angle-quote",
+       "@_output": "‹"
+      },
+      {
+       "@_id": "close-angle-quote",
+       "@_output": "›"
+      },
+      {
+       "@_id": "E-grave",
+       "@_output": "È"
+      },
+      {
+       "@_id": "U-grave",
+       "@_output": "Ù"
+      },
+      {
+       "@_id": "nb-hyphen",
+       "@_output": "‑"
+      },
+      {
+       "@_id": "multiplication",
+       "@_output": "×"
+      },
+      {
+       "@_id": "ezh",
+       "@_output": "ʒ"
+      },
+      {
+       "@_id": "Ezh",
+       "@_output": "Ʒ"
+      },
+      {
+       "@_id": "ae",
+       "@_output": "æ"
+      },
+      {
+       "@_id": "Ae",
+       "@_output": "Æ"
+      },
+      {
+       "@_id": "permille",
+       "@_output": "‰"
+      },
+      {
+       "@_id": "dbl-dagger",
+       "@_output": "‡"
+      },
+      {
+       "@_id": "dagger",
+       "@_output": "†"
+      },
+      {
+       "@_id": "asym-equal",
+       "@_output": "≃"
+      },
+      {
+       "@_id": "Ss",
+       "@_output": "ẞ"
+      }
+     ]
+    },
+    "layers": {
+     "layer": [
+      {
+       "row": [
+        {
+         "@_keys": "at a-grave e-acute e-grave e-caret open-paren close-paren open-apos close-apos open-g close-g apos mark-caret"
+        },
+        {
+         "@_keys": "a z e r t y u i o p hyphen plus"
+        },
+        {
+         "@_keys": "q s d f g h j k l m slash asterisk"
+        },
+        {
+         "@_keys": "open-angle w x c v b n period comma colon semi-colon"
+        },
+        {
+         "@_keys": "space"
+        }
+       ],
+       "@_modifiers": "none"
+      },
+      {
+       "row": [
+        {
+         "@_keys": "hash 1 2 3 4 5 6 7 8 9 0 double-quote mark-umlaut"
+        },
+        {
+         "@_keys": "A Z E R T Y U I O P en-dash plus-minus"
+        },
+        {
+         "@_keys": "Q S D F G H J K L M backslash vulgar-half"
+        },
+        {
+         "@_keys": "close-angle W X C V B N question bang ellipsis equal"
+        },
+        {
+         "@_keys": "space"
+        }
+       ],
+       "@_modifiers": "shift"
+      },
+      {
+       "row": [
+        {
+         "@_keys": "mark-breve section mark-acute mark-grave amp open-square close-square mark-macron underscore open-double close-double degree mark-caron"
+        },
+        {
+         "@_keys": "ae pound euro registered open-curly close-curly u-grave mark-dotabove oe percent minus-sign dagger"
+        },
+        {
+         "@_keys": "theta ss dollar mark-currency mark-greek mark-euro gap mark-solidus pipe infinity division multiplication"
+        },
+        {
+         "@_keys": "less-equal ezh copy c-cedilla mark-cedilla mark-stroke mark-tilde inverse-question inverse-bang middle-dot asym-equal"
+        },
+        {
+         "@_keys": "nbsp"
+        }
+       ],
+       "@_modifiers": "ctrl alt"
+      },
+      {
+       "row": [
+        {
+         "@_keys": "mark-invbreve A-grave E-acute E-grave E-caret mark-doubleacute mark-doublegrave gap em-dash open-angle-quote close-angle-quote mark-ring gap"
+        },
+        {
+         "@_keys": "Ae gap gap gap tm gap U-grave mark-dotbelow Oe permille nb-hyphen dbl-dagger"
+        },
+        {
+         "@_keys": "Theta Ss gap gap gap mark-submacron gap gap gap gap radix vulgar-quarter"
+        },
+        {
+         "@_keys": "greater-equal Ezh gap C-cedilla mark-ogonek gap gap gap mark-comma gap not-equal"
+        },
+        {
+         "@_keys": "nnbsp"
+        }
+       ],
+       "@_modifiers": "ctrl alt shift"
+      }
+     ],
+     "@_formId": "iso"
+    },
+    "variables": {
+     "string": [
+      {
+       "@_id": "grave",
+       "@_value": "`"
+      },
+      {
+       "@_id": "caret",
+       "@_value": "^"
+      },
+      {
+       "@_id": "umlaut",
+       "@_value": "¨"
+      },
+      {
+       "@_id": "tilde",
+       "@_value": "~"
+      }
+     ],
+     "set": [
+      {
+       "@_id": "vowel",
+       "@_value": "a e i o u  A E I O U"
+      },
+      {
+       "@_id": "upaccentable",
+       "@_value": "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z    Ʒ Æ Œ"
+      },
+      {
+       "@_id": "lwaccentable",
+       "@_value": "a b c d e f g h i j k l m n o p q r s t u v w x y z    ʒ æ œ"
+      },
+      {
+       "@_id": "accentable",
+       "@_value": "$[upaccentable] $[lwaccentable]"
+      },
+      {
+       "@_id": "currfrom",
+       "@_value": "e r t y p s d f g h k l m w c b n A R T P S D F L M  C B"
+      },
+      {
+       "@_id": "currto",
+       "@_value": "₠ ₽ ₸ ¥ ₱ ₪ ₫ ƒ ₲ ₴ ₭ ₺ ₥ ₩ ¢ ₿ ₦ ₳ ₹ ₮ ₧ ₷ ₯ ₣ ₤ ℳ ₡ ﺀ"
+      },
+      {
+       "@_id": "greekfrom",
+       "@_value": "a z e r u i o p s d g h j k l m x b n A Z E R U I O P S D G H J K L M X B N"
+      },
+      {
+       "@_id": "greekto",
+       "@_value": "α ζ ε ρ θ ι ο π σ δ γ η ξ κ λ μ ς β ν Α Ζ Ε Ρ Θ Ι Ο Π Σ Δ Γ Η Ξ Κ Λ Μ Σ Β Ν"
+      },
+      {
+       "@_id": "eurofrom",
+       "@_value": "a e t i o s d g j  ‘ ’ «  » '   E T I D G J  7 8 9 0"
+      },
+      {
+       "@_id": "euroto",
+       "@_value": "ª ə þ ı º ſ ð ŋ ij ‚ ‘ „ ‟ ’    Ə Þ İ Đ Ŋ IJ › ‹ » «"
+      },
+      {
+       "@_id": "digits",
+       "@_value": "0 1 2 3 4 5 6 7 8 9"
+      },
+      {
+       "@_id": "superdigits",
+       "@_value": "⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹"
+      },
+      {
+       "@_id": "subdigits",
+       "@_value": "₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉"
+      }
+     ]
+    },
+    "transforms": [
+     {
+      "transformGroup": [
+       {
+        "transform": [
+         {
+          "@_from": "\\m{breve}($[digits])",
+          "@_to": "$[1:superdigits]"
+         },
+         {
+          "@_from": "\\m{invbreve}($[digits])",
+          "@_to": "$[1:subdigits]"
+         },
+         {
+          "@_from": "\\m{dotabove}i",
+          "@_to": "ı"
+         },
+         {
+          "@_from": "\\m{breve}($[accentable])",
+          "@_to": "$1\\u{0306}"
+         },
+         {
+          "@_from": "\\m{umlaut}($[accentable])",
+          "@_to": "$1\\u{0308}"
+         },
+         {
+          "@_from": "\\m{invbreve}($[accentable])",
+          "@_to": "$1\\u{0311}"
+         },
+         {
+          "@_from": "\\m{acute}($[accentable])",
+          "@_to": "$1\\u{0301}"
+         },
+         {
+          "@_from": "\\m{caret}($[accentable])",
+          "@_to": "$1\\u{0302}"
+         },
+         {
+          "@_from": "\\m{caron}($[accentable])",
+          "@_to": "$1\\u{030c}"
+         },
+         {
+          "@_from": "\\m{cedilla}($[accentable])",
+          "@_to": "$1\\u{0327}"
+         },
+         {
+          "@_from": "\\m{comma}($[accentable])",
+          "@_to": "$1\\u{0326}"
+         },
+         {
+          "@_from": "\\m{dotabove}($[accentable])",
+          "@_to": "$1\\u{0307}"
+         },
+         {
+          "@_from": "\\m{dotbelow}($[accentable])",
+          "@_to": "$1\\u{0323}"
+         },
+         {
+          "@_from": "\\m{doubleacute}($[accentable])",
+          "@_to": "$1\\u{030b}"
+         },
+         {
+          "@_from": "\\m{doublegrave}($[accentable])",
+          "@_to": "$1\\u{030f}"
+         },
+         {
+          "@_from": "\\m{grave}($[accentable])",
+          "@_to": "$1\\u{0300}"
+         },
+         {
+          "@_from": "\\m{macron}($[accentable])",
+          "@_to": "$1\\u{0304}"
+         },
+         {
+          "@_from": "\\m{ogonek}($[accentable])",
+          "@_to": "$1\\u{0328}"
+         },
+         {
+          "@_from": "\\m{ring}($[accentable])",
+          "@_to": "$1\\u{030a}"
+         },
+         {
+          "@_from": "\\m{solidus}($[accentable])",
+          "@_to": "$1\\u{338}"
+         },
+         {
+          "@_from": "\\m{stroke}($[accentable])",
+          "@_to": "$1\\u{0335}"
+         },
+         {
+          "@_from": "\\m{submacron}($[accentable])",
+          "@_to": "$1\\u{0331}"
+         },
+         {
+          "@_from": "\\m{tilde}($[accentable])",
+          "@_to": "$1\\u{0303}"
+         },
+         {
+          "@_from": "\\m{currency}($[currfrom])",
+          "@_to": "$[1:currto]"
+         },
+         {
+          "@_from": "\\m{greek}\\m{greek}",
+          "@_to": "\\u{B5}"
+         },
+         {
+          "@_from": "\\m{greek}($[greekfrom])",
+          "@_to": "$[1:greekto]"
+         },
+         {
+          "@_from": "\\m{euro}($[eurofrom])",
+          "@_to": "$[1:euroto]"
+         },
+         {
+          "@_from": "\\m{currency}®",
+          "@_to": "₨"
+         },
+         {
+          "@_from": "\\m{currency}%",
+          "@_to": "₰"
+         },
+         {
+          "@_from": "\\m{currency}\\|",
+          "@_to": "₾"
+         },
+         {
+          "@_from": "\\m{currency}∞",
+          "@_to": "₼"
+         },
+         {
+          "@_from": "\\m{currency}ç",
+          "@_to": "₢"
+         },
+         {
+          "@_from": "\\m{currency}\\m{currency}",
+          "@_to": "¤"
+         },
+         {
+          "@_from": "\\m{currency}Ç",
+          "@_to": "₵"
+         }
+        ]
+       },
+       {
+        "transform": [
+         {
+          "@_from": "\\m{.}(.)",
+          "@_to": "$1"
+         },
+         {
+          "@_from": "\\m{euro}\\m{euro}"
+         }
+        ]
+       }
+      ],
+      "@_type": "simple"
+     }
+    ],
+    "@_xmlns": "https://schemas.unicode.org/cldr/45/keyboard3",
+    "@_conformsTo": "45",
+    "@_locale": "fr"
    }
   }
  },
