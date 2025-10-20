@@ -30,7 +30,7 @@
   },
   "homepage": "https://github.com/unicode-org/cldr#readme",
   "devDependencies": {
-    "chai": "^5.1.1",
+    "chai": "^6.2.0",
     "css-loader": "^6.8.1",
     "esm": "^3.2.25",
     "mocha": "^10.8.2",
