@@ -18,7 +18,7 @@ jobs:
             git-${{ github.base_ref }}-${{ github.sha }}
             git-${{ github.base_ref }}
             git-
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           lfs: false
           fetch-depth: 0 # for cldr-archive
