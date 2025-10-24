@@ -15,7 +15,8 @@ The following table lists the files for each released version. For license infor
 |:---:|:----------:|:---------:|:------:|:--------:|:------------:|:---:|:----------:|:---------:|:---------:|
 | Latest |  | [latest-version][] | [latest-data][] | [latest-charts][] | [latest-ldml][] | [latest-tickets][] | [release-47][]| [latest-delta-dtd][] | See release notes |
 | Dev |  | [dev-version][] |  | [dev-charts][]| [dev-ldml][] | [dev-tickets][] | [main][]| [dev-delta-dtd][] | See release notes |
-|  47 | 2025-03-13 | [v47][] | [CLDR47][] | [Charts47][] | [LDML47][] | [Δ47][] | [release-47][] | [ΔDtd47] | [47.0.0][] |
+|  48 | 2025-10-~~XX~~ | [v48][] | [CLDR48][] | [Charts48][] | [LDML48][] | [Δ48][] | [release-48-beta3][] | [ΔDtd48][] | [48.0.0-BETA3][] |
+|  47 | 2025-03-13 | [v47][] | [CLDR47][] | [Charts47][] | [LDML47][] | [Δ47][] | [release-47][] | [ΔDtd47][] | [47.0.0][] |
 | 46.1 | 2024-12-18 | [v46.1][] | n/a | [Charts46.1][] | [LDML46.1][] | [Δ46.1][] | [release-46-1][] | [ΔDtd46.1][] | [46.1.0][] |
 |  46 | 2024-10-24 | [v46][] | [CLDR46][] | [Charts46][] | [LDML46][] | [Δ46][] | [release-46][] | [ΔDtd46][] | [46.0.0][] |
 | 45 | 2024-04-17 | [v45][] | [CLDR45][] | [Charts45][] | [LDML45][] | [Δ45][] | [release-45][] | [ΔDtd45][] | [45.0.0][] |
@@ -211,6 +212,16 @@ The 1.0 version of CLDR is described here for historical interest only. It was h
 [dev-tickets]: https://unicode-org.atlassian.net/issues/?filter=10837
 [main]: https://github.com/unicode-org/cldr.git
 [dev-delta-dtd]: https://www.unicode.org/cldr/charts/dev/supplemental/dtd_deltas.html
+
+<!-- 48 release: 2025-10-XX -->
+[CLDR48]: https://unicode.org/Public/cldr/48/
+[Charts48]: https://unicode.org/cldr/charts/dev
+[LDML48]: https://www.unicode.org/reports/tr35/proposed.html
+[Δ48]: https://unicode-org.atlassian.net/issues/?filter=10837
+[release-48-beta3]: https://github.com/unicode-org/cldr/releases/tag/release-48-beta3
+[ΔDtd48]: https://www.unicode.org/cldr/charts/dev/supplemental/dtd_deltas.html
+[48.0.0-BETA3]: https://github.com/unicode-org/cldr-json/releases/tag/48.0.0-BETA3
+[v48]: /downloads/cldr-48
 
 <!-- 47 release: 2025-03-13 -->
 [CLDR47]: https://unicode.org/Public/cldr/47/
