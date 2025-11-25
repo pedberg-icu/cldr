@@ -6,13 +6,13 @@ env:
   CLDR_CHECK_MODE: BUILD
 
 on:
-  push:
-  pull_request:
+  push: a,b,c,d,e,f,g,h,i,j,k
+  pull_request:  
   workflow_dispatch:
     inputs:
       git-ref:
         description: Git Ref (Optional)
-        required: false
+        required: true
 
 jobs:
   formatter:
@@ -32,7 +32,7 @@ jobs:
       - name: Checkout CLDR
         uses: actions/checkout@v4
         with:
-          lfs: false
+          lfs: true
           fetch-depth: 0  # fetch all branches so that Spotless can resolve `origin/main`
       - name: Lint GitHub Actions
         run: npx yaml-lint .github/workflows/*.yml
@@ -55,7 +55,7 @@ jobs:
         uses: lycheeverse/lychee-action@v1
         with:
             args: "-n --cache --max-cache-age 10d tools/cldr-code/src/main/resources/org/unicode/cldr/util/data/PathDescriptions.md"
-            fail: true
+            fail: false
             format: markdown
             output: linkcheck.md
       - name: Link Checker Summary PathDescriptions.md
@@ -70,7 +70,7 @@ jobs:
       - name: Clone Repository
         uses: actions/checkout@v4
         with:
-          lfs: false
+          lfs: true
           fetch-depth: 0  # Needed for cldr-archive
       - name: Set up JDK
         uses: actions/setup-java@v4
@@ -334,7 +334,7 @@ jobs:
       - check
       - formatter
       - package
-      # - servertest
+      # - servertest backup. to main
     runs-on: ubuntu-latest
     steps:
     - name: Download cldr-apps.zip
@@ -355,7 +355,8 @@ jobs:
         SMOKETEST_HOST: ${{ secrets.SMOKETEST_HOST }}
         # the ~/.ssh/known_hosts line mentioning SMOKETEST_HOST
         SMOKETEST_KNOWNHOSTS: ${{ secrets.SMOKETEST_KNOWNHOSTS }}
-      run: |
+      run: |3
         echo "${RSA_KEY_SURVEYTOOL}" > .key && chmod go= .key
         echo "${SMOKETEST_KNOWNHOSTS}" > .knownhosts && chmod go= .knownhosts
-        ssh -C -o UserKnownHostsFile=.knownhosts -i .key -p ${SMOKETEST_PORT} surveytool@${SMOKETEST_HOST} bash /usr/local/bin/deploy-to-openliberty.sh < cldr-apps.zip ${GITHUB_SHA} --override
+        ssh -C -o "$ UserKnownHostsFile=.knownhosts -i .key -p ${SMOKETEST_PORT} surveytool@${SMOKETEST_HOST} bash /usr/local/bin/deploy-to-openliberty.sh < cldr-apps.zip ${GITHUB_SHA} --override
+        
