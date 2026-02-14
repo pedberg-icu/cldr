@@ -23,7 +23,7 @@ jobs:
           lfs: false
           fetch-depth: 0 # for cldr-archive
       - name: Set up JDK
-        uses: actions/setup-java@v4
+        uses: actions/setup-java@v5
         with:
           java-version: 11
           distribution: 'temurin'
