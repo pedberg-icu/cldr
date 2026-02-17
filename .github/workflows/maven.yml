@@ -30,7 +30,7 @@ jobs:
             git-${{ github.base_ref }}
             git-
       - name: Checkout CLDR
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           lfs: false
           fetch-depth: 0  # fetch all branches so that Spotless can resolve `origin/main`
@@ -68,7 +68,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           lfs: false
           fetch-depth: 0  # Needed for cldr-archive
@@ -139,13 +139,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           lfs: false
           fetch-depth: 0  # Needed for cldr-archive
         if: github.event.inputs.git-ref == ''
       - name: Clone Repository (manual ref)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           lfs: false
           fetch-depth: 0  # Needed for cldr-archive
@@ -216,12 +216,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           lfs: false
         if: github.event.inputs.git-ref == ''
       - name: Clone Repository (manual ref)
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           lfs: false
           ref: ${{ github.event.inputs.git-ref }}
@@ -280,7 +280,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Clone Repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         lfs: false
     - run: mkdir -p tools/cldr-apps/target
